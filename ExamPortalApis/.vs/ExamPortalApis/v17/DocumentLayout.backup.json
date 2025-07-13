@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "D:\\iti.net\\Angular project\\ExamPortal\\ExamPortalApis\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E4C8F495-FDF7-4CC7-8F01-47DFBC14CCF5}|ExamPortalApis.csproj|d:\\iti.net\\angular project\\examportal\\examportalapis\\controllers\\questioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E4C8F495-FDF7-4CC7-8F01-47DFBC14CCF5}|ExamPortalApis.csproj|solutionrelative:controllers\\questioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E4C8F495-FDF7-4CC7-8F01-47DFBC14CCF5}|ExamPortalApis.csproj|d:\\iti.net\\angular project\\examportal\\examportalapis\\controllers\\examcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E4C8F495-FDF7-4CC7-8F01-47DFBC14CCF5}|ExamPortalApis.csproj|solutionrelative:controllers\\examcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E4C8F495-FDF7-4CC7-8F01-47DFBC14CCF5}|ExamPortalApis.csproj|d:\\iti.net\\angular project\\examportal\\examportalapis\\dtos\\teacher\\questionsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E4C8F495-FDF7-4CC7-8F01-47DFBC14CCF5}|ExamPortalApis.csproj|solutionrelative:dtos\\teacher\\questionsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 331,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,15 +38,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "QuestionsDTO.cs",
+              "DocumentMoniker": "D:\\iti.net\\Angular project\\ExamPortal\\ExamPortalApis\\DTOs\\Teacher\\QuestionsDTO.cs",
+              "RelativeDocumentMoniker": "DTOs\\Teacher\\QuestionsDTO.cs",
+              "ToolTip": "D:\\iti.net\\Angular project\\ExamPortal\\ExamPortalApis\\DTOs\\Teacher\\QuestionsDTO.cs",
+              "RelativeToolTip": "DTOs\\Teacher\\QuestionsDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-13T20:10:39.384Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "ExamController.cs",
               "DocumentMoniker": "D:\\iti.net\\Angular project\\ExamPortal\\ExamPortalApis\\Controllers\\ExamController.cs",
               "RelativeDocumentMoniker": "Controllers\\ExamController.cs",
               "ToolTip": "D:\\iti.net\\Angular project\\ExamPortal\\ExamPortalApis\\Controllers\\ExamController.cs",
               "RelativeToolTip": "Controllers\\ExamController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAgwC8AAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-12T20:22:28.21Z",
+              "WhenOpened": "2025-07-13T20:09:41.864Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "QuestionController.cs",
+              "DocumentMoniker": "D:\\iti.net\\Angular project\\ExamPortal\\ExamPortalApis\\Controllers\\QuestionController.cs",
+              "RelativeDocumentMoniker": "Controllers\\QuestionController.cs",
+              "ToolTip": "D:\\iti.net\\Angular project\\ExamPortal\\ExamPortalApis\\Controllers\\QuestionController.cs*",
+              "RelativeToolTip": "Controllers\\QuestionController.cs*",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBQAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-13T20:08:56.344Z",
               "EditorCaption": ""
             }
           ]

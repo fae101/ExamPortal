@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { Hero } from "./hero/hero";
 import { UserTypes } from "./user-types/user-types";
 import { Features } from "./features/features";
-import { Navbar } from "../shared/navbar/navbar";
+import { Navbar } from "../shared/components/navbar/navbar";
 import { CtaSection } from "./cta-section/cta-section";
-import { Footer } from "../shared/footer/footer";
+import { Footer } from "../shared/components/footer/footer";
 
 @Component({
   selector: 'app-home',
