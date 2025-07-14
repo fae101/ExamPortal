@@ -1,10 +1,12 @@
 using ExamPortalApis.DTOs.Student;
 using ExamPortalApis.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace ExamPortalApis.Controllers
 {
+  [Authorize(Roles = "Student")]
   [Route("api/[controller]")]
   [ApiController]
   public class StudentController : ControllerBase
@@ -16,7 +18,6 @@ namespace ExamPortalApis.Controllers
       this.db = db;
     }
 
-    // GET: /api/student/exams
     [HttpGet("exams")]
     public IActionResult GetPublishedExams()
     {
@@ -34,7 +35,6 @@ namespace ExamPortalApis.Controllers
       return Ok(exams);
     }
 
-    // GET: /api/student/exam/{id}
     [HttpGet("exam/{id}")]
     public IActionResult GetExamDetails(Guid id)
     {
@@ -62,7 +62,6 @@ namespace ExamPortalApis.Controllers
       return Ok(examDto);
     }
 
-    // POST: /api/student/exam/{id}/submit
     [HttpPost("exam/{id}/submit")]
     public IActionResult SubmitAnswers(Guid id, [FromBody] SubmissionDTO submission)
     {
@@ -76,12 +75,12 @@ namespace ExamPortalApis.Controllers
         ExamId = id,
         StudentId = submission.UserId,
         Answers = submission.Answers
-                  .Select(a => new Answer
-                  {
-                    QuestionId = a.Key,
-                    SelectedIndex = a.Value
-                  })
-    .ToList(),
+          .Select(a => new Answer
+          {
+            QuestionId = a.Key,
+            SelectedIndex = a.Value
+          })
+          .ToList(),
         SubmittedAt = DateTime.UtcNow
       };
 

@@ -205,6 +205,38 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ExamPortalApis.Controllers.SubmissionController",
+    "Method": "GetExamSubmissions",
+    "RelativePath": "api/Submission/exam/{examId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "examId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ExamPortalApis.Controllers.SubmissionController",
+    "Method": "GetUserSubmissions",
+    "RelativePath": "api/Submission/user/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ExamPortalApis.Controllers.TeacherController",
     "Method": "GetAllStudents",
     "RelativePath": "api/Teacher/students",
