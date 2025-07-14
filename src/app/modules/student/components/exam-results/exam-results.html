@@ -1,0 +1,72 @@
+<div class="exam-results-container">
+
+  <!-- Loading Spinner -->
+  @if (loading) {
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>Fetching your exam results...</p>
+    </div>
+  }
+
+  <!-- Main Results -->
+  @if (!loading && result) {
+    <div class="exam-summary">
+      <h1>Exam Results</h1>
+
+      <div class="summary-metrics">
+        <div class="metric">
+          <strong>Score:</strong> {{ result.score }} / {{ result.totalPoints }}
+        </div>
+        <div class="metric">
+          <strong>Correct:</strong> {{ result.correct }}
+        </div>
+        <div class="metric">
+          <strong>Incorrect:</strong> {{ result.incorrect }}
+        </div>
+        <div class="metric">
+          <strong>Grade:</strong>
+          <span class="grade-badge" [style.backgroundColor]="getGradeColor()">
+            {{ result.grade | titlecase }}
+          </span>
+        </div>
+        <div class="metric">
+          <strong>Duration:</strong> {{ result.duration }} minutes
+        </div>
+        <div class="metric">
+          <strong>Accuracy:</strong> {{ getScorePercentage() }}%
+        </div>
+      </div>
+    </div>
+
+    <!-- Detailed Breakdown -->
+    <div class="result-breakdown">
+      <h2>Answer Breakdown</h2>
+
+      <div class="question-breakdown">
+        @for (item of result.breakdown; track $index) {
+          <div class="breakdown-item" [ngClass]="{ correct: item.isCorrect, incorrect: !item.isCorrect }">
+            <h3>Q{{ $index + 1 }}: {{ item.question }}</h3>
+            <p>
+              <strong>Your Answer:</strong>
+              <span class="answer-value">{{ item.yourAnswer }}</span>
+            </p>
+            <p>
+              <strong>Correct Answer:</strong>
+              <span class="answer-value">{{ item.correctAnswer }}</span>
+            </p>
+            <p>
+              <strong>Points Earned:</strong> {{ item.points }}
+            </p>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="results-navigation">
+      <a routerLink="/student/submissions" class="btn btn-secondary">View Submission History</a>
+      <a routerLink="/student/exams" class="btn btn-primary">Back to Available Exams</a>
+    </div>
+  }
+
+</div>
