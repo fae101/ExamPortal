@@ -1,43 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
-:root {
-  --color-charcoal: #0f1419;
-  --color-slate: #1a202c;
-  --color-midnight: #2d3748;
-  --color-purple: #8b5cf6;
-  --color-cyan: #06b6d4;
-  --color-amber: #f59e0b;
-  --color-white: #f7fafc;
-  --color-silver: #cbd5e0;
-  --color-muted: #a0aec0;
-  --color-success: #10b981;
-  --color-error: #f56565;
-  --color-warning: #ed8936;
-}
-
-
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #0f1419 0%, #1a202c 100%);
-    color: #f7fafc;
-    min-height: 100vh;
-    overflow-x: hidden;
-}
-
-
-
-/* ====== Custom Components ====== */
-
 .page-container {
-  padding: 2rem;
   background-color: var(--color-charcoal);
   color: var(--color-white);
+  padding: 2rem;
 }
 
 .custom-input,
@@ -77,13 +41,3 @@ textarea.custom-input {
   margin: 0.5rem;
   cursor: pointer;
 }
-
-
-
-
-
-
-
-
-
-

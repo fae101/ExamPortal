@@ -1,0 +1,72 @@
+<div class="page-container">
+  <h2>Create New Exam</h2>
+
+  <form [formGroup]="examForm" (ngSubmit)="submit()">
+    <input class="custom-input" formControlName="title" placeholder="Title" />
+    <textarea class="custom-input" formControlName="description" placeholder="Description"></textarea>
+
+    <div formArrayName="questions">
+      <div *ngFor="let question of questions.controls; let i=index" [formGroupName]="i" class="question-card">
+        <input class="custom-input" formControlName="text" placeholder="Question Text" />
+
+        <div formArrayName="options">
+          <div *ngFor="let opt of getQuestionOptions(i).controls; let j=index">
+            <input class="custom-input" [formControlName]="j" placeholder="Option {{j + 1}}" />
+          </div>
+        </div>
+
+        <input class="custom-input" formControlName="correctAnswer" placeholder="Correct Answer" />
+      </div>
+    </div>
+
+    <button type="button" class="custom-btn-secondary" (click)="addQuestion()">+ Add Question</button>
+    <button type="submit" class="custom-btn-primary">Create Exam</button>
+  </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="page-container">
+  <h2>Create New Exam</h2>
+
+  <form [formGroup]="examForm" (ngSubmit)="submit()">
+    <input class="custom-input" formControlName="title" placeholder="Title" />
+    <textarea class="custom-input" formControlName="description" placeholder="Description"></textarea>
+
+    <div formArrayName="questions">
+      <div *ngFor="let question of questions.controls; let i=index" [formGroupName]="i" class="question-card">
+        <input class="custom-input" formControlName="text" placeholder="Question Text" />
+
+        <div formArrayName="options">
+          <div *ngFor="let opt of question.get('options').controls; let j=index">
+            <input class="custom-input" [formControlName]="j" placeholder="Option {{j + 1}}" />
+          </div>
+        </div>
+
+           <div formArrayName="options">
+          <div *ngFor="let opt of (question.get('options')as FormArray)?.controls; let j=index">
+            <input class="custom-input" [formControlName]="j" placeholder="Option {{j + 1}}" />
+          </div>
+        </div>
+
+        <input class="custom-input" formControlName="correctAnswer" placeholder="Correct Answer" />
+      </div>
+    </div>
+
+    <button type="button" class="custom-btn-secondary" (click)="addQuestion()">+ Add Question</button>
+    <button type="submit" class="custom-btn-primary">Create Exam</button>
+  </form>
+</div> -->
