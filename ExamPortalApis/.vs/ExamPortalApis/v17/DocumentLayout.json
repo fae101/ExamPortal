@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "D:\\iti.net\\Angular project\\ExamPortal\\ExamPortalApis\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E4C8F495-FDF7-4CC7-8F01-47DFBC14CCF5}|ExamPortalApis.csproj|d:\\iti.net\\angular project\\examportal\\examportalapis\\controllers\\teachercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E4C8F495-FDF7-4CC7-8F01-47DFBC14CCF5}|ExamPortalApis.csproj|solutionrelative:controllers\\teachercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E4C8F495-FDF7-4CC7-8F01-47DFBC14CCF5}|ExamPortalApis.csproj|d:\\iti.net\\angular project\\examportal\\examportalapis\\dtos\\student\\submissiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E4C8F495-FDF7-4CC7-8F01-47DFBC14CCF5}|ExamPortalApis.csproj|solutionrelative:dtos\\student\\submissiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E4C8F495-FDF7-4CC7-8F01-47DFBC14CCF5}|ExamPortalApis.csproj|d:\\iti.net\\angular project\\examportal\\examportalapis\\controllers\\examcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E4C8F495-FDF7-4CC7-8F01-47DFBC14CCF5}|ExamPortalApis.csproj|solutionrelative:controllers\\examcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E4C8F495-FDF7-4CC7-8F01-47DFBC14CCF5}|ExamPortalApis.csproj|d:\\iti.net\\angular project\\examportal\\examportalapis\\dtos\\student\\examdetaildto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E4C8F495-FDF7-4CC7-8F01-47DFBC14CCF5}|ExamPortalApis.csproj|solutionrelative:dtos\\student\\examdetaildto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E4C8F495-FDF7-4CC7-8F01-47DFBC14CCF5}|ExamPortalApis.csproj|d:\\iti.net\\angular project\\examportal\\examportalapis\\controllers\\questioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E4C8F495-FDF7-4CC7-8F01-47DFBC14CCF5}|ExamPortalApis.csproj|solutionrelative:controllers\\questioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E4C8F495-FDF7-4CC7-8F01-47DFBC14CCF5}|ExamPortalApis.csproj|d:\\iti.net\\angular project\\examportal\\examportalapis\\dtos\\student\\examoverviewdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E4C8F495-FDF7-4CC7-8F01-47DFBC14CCF5}|ExamPortalApis.csproj|solutionrelative:dtos\\student\\examoverviewdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E4C8F495-FDF7-4CC7-8F01-47DFBC14CCF5}|ExamPortalApis.csproj|d:\\iti.net\\angular project\\examportal\\examportalapis\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E4C8F495-FDF7-4CC7-8F01-47DFBC14CCF5}|ExamPortalApis.csproj|solutionrelative:controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,8 +26,21 @@
       "DocumentGroups": [
         {
           "DockedHeight": 331,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 5,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ExamDetailDTO.cs",
+              "DocumentMoniker": "D:\\iti.net\\Angular project\\ExamPortal\\ExamPortalApis\\DTOs\\Student\\ExamDetailDTO.cs",
+              "RelativeDocumentMoniker": "DTOs\\Student\\ExamDetailDTO.cs",
+              "ToolTip": "D:\\iti.net\\Angular project\\ExamPortal\\ExamPortalApis\\DTOs\\Student\\ExamDetailDTO.cs",
+              "RelativeToolTip": "DTOs\\Student\\ExamDetailDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-14T17:05:55.708Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -38,41 +55,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TeacherController.cs",
-              "DocumentMoniker": "D:\\iti.net\\Angular project\\ExamPortal\\ExamPortalApis\\Controllers\\TeacherController.cs",
-              "RelativeDocumentMoniker": "Controllers\\TeacherController.cs",
-              "ToolTip": "D:\\iti.net\\Angular project\\ExamPortal\\ExamPortalApis\\Controllers\\TeacherController.cs",
-              "RelativeToolTip": "Controllers\\TeacherController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABkAAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-13T20:33:35.413Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ExamController.cs",
-              "DocumentMoniker": "D:\\iti.net\\Angular project\\ExamPortal\\ExamPortalApis\\Controllers\\ExamController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ExamController.cs",
-              "ToolTip": "D:\\iti.net\\Angular project\\ExamPortal\\ExamPortalApis\\Controllers\\ExamController.cs",
-              "RelativeToolTip": "Controllers\\ExamController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-13T20:09:41.864Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "QuestionController.cs",
-              "DocumentMoniker": "D:\\iti.net\\Angular project\\ExamPortal\\ExamPortalApis\\Controllers\\QuestionController.cs",
-              "RelativeDocumentMoniker": "Controllers\\QuestionController.cs",
-              "ToolTip": "D:\\iti.net\\Angular project\\ExamPortal\\ExamPortalApis\\Controllers\\QuestionController.cs",
-              "RelativeToolTip": "Controllers\\QuestionController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Title": "ExamOverviewDTO.cs",
+              "DocumentMoniker": "D:\\iti.net\\Angular project\\ExamPortal\\ExamPortalApis\\DTOs\\Student\\ExamOverviewDTO.cs",
+              "RelativeDocumentMoniker": "DTOs\\Student\\ExamOverviewDTO.cs",
+              "ToolTip": "D:\\iti.net\\Angular project\\ExamPortal\\ExamPortalApis\\DTOs\\Student\\ExamOverviewDTO.cs",
+              "RelativeToolTip": "DTOs\\Student\\ExamOverviewDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-13T20:08:56.344Z",
+              "WhenOpened": "2025-07-14T17:05:00.928Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SubmissionDTO.cs",
+              "DocumentMoniker": "D:\\iti.net\\Angular project\\ExamPortal\\ExamPortalApis\\DTOs\\Student\\SubmissionDTO.cs",
+              "RelativeDocumentMoniker": "DTOs\\Student\\SubmissionDTO.cs",
+              "ToolTip": "D:\\iti.net\\Angular project\\ExamPortal\\ExamPortalApis\\DTOs\\Student\\SubmissionDTO.cs",
+              "RelativeToolTip": "DTOs\\Student\\SubmissionDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-14T16:51:28.366Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "StudentController.cs",
+              "DocumentMoniker": "D:\\iti.net\\Angular project\\ExamPortal\\ExamPortalApis\\Controllers\\StudentController.cs",
+              "RelativeDocumentMoniker": "Controllers\\StudentController.cs",
+              "ToolTip": "D:\\iti.net\\Angular project\\ExamPortal\\ExamPortalApis\\Controllers\\StudentController.cs",
+              "RelativeToolTip": "Controllers\\StudentController.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAYwDsAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-14T16:51:26.414Z",
               "EditorCaption": ""
             }
           ]
