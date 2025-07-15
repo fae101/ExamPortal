@@ -1,0 +1,58 @@
+<div class="student-list-container">
+
+  <!-- Loading Spinner -->
+  @if (loading) {
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading enrolled students...</p>
+    </div>
+  }
+
+  <!-- Empty State -->
+  @if (!loading && students.length === 0) {
+    <div class="empty-state">
+      <h2>No Students Found</h2>
+      <p>Looks like no students have enrolled yet.</p>
+      <a routerLink="/teacher/dashboard" class="btn btn-primary">Back to Dashboard</a>
+    </div>
+  }
+
+  <!-- Students Table -->
+  @if (!loading && students.length > 0) {
+    <div class="students-section">
+      <h1>Enrolled Students</h1>
+
+      <table class="students-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Enrolled On</th>
+            <th>Total Exams</th>
+            <th>Avg. Score</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (student of students; track student.id) {
+            <tr>
+              <td>{{ $index + 1 }}</td>
+              <td>{{ student.fullName }}</td>
+              <td>{{ student.email }}</td>
+              <td>{{ student.enrolledDate | date: 'mediumDate' }}</td>
+              <td>{{ student.totalExams }}</td>
+              <td>{{ student.averageScore }}%</td>
+              <td>
+                <a routerLink="/teacher/student/{{ student.id }}" class="btn btn-secondary">
+                  View Profile
+                </a>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+
+</div>
