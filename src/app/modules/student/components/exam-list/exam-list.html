@@ -1,0 +1,77 @@
+<div class="exam-list-container">
+  <div class="page-header">
+    <h1 class="page-title">Available Exams</h1>
+    <p class="page-subtitle">Select an exam to view details or start taking it</p>
+  </div>
+
+  <!-- Loading Indicator -->
+  @if (loading) {
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading exams...</p>
+    </div>
+  }
+
+  <!-- Empty State -->
+  @if (!loading && exams.length === 0) {
+    <div class="empty-state">
+      <div class="empty-icon">📝</div>
+      <h3>No Exams Available</h3>
+      <p>There are currently no exams available for you to take.</p>
+    </div>
+  }
+
+  <!-- Exams Grid -->
+  @if (!loading && exams.length > 0) {
+    <div class="exams-grid">
+      @for (exam of exams; track exam.id) {
+        <div class="exam-card">
+          <div class="exam-header">
+            <h3 class="exam-title">{{ exam.title }}</h3>
+            <span class="exam-status" [ngClass]="getStatusClass(exam.status)">
+              {{ exam.status | titlecase }}
+            </span>
+          </div>
+
+          <div class="exam-body">
+            <p class="exam-description">{{ exam.description }}</p>
+
+            <div class="exam-details">
+              <div class="detail-item">
+                <span class="detail-label">Duration:</span>
+                <span class="detail-value">{{ exam.duration }} minutes</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Questions:</span>
+                <span class="detail-value">{{ exam.totalQuestions || 'N/A' }}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Start Time:</span>
+                <span class="detail-value">{{ exam.startDate | date: 'medium' }}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">End Time:</span>
+                <span class="detail-value">{{ exam.endDate | date: 'medium' }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exam-actions">
+            @if (exam.status === 'active') {
+              <button class="btn btn-primary" (click)="startExam(exam.id)">Start Exam</button>
+            }
+            @if (exam.status === 'upcoming') {
+              <button class="btn btn-secondary" disabled>Upcoming</button>
+            }
+            @if (exam.status === 'completed') {
+              <button class="btn btn-success" (click)="viewResults(exam.id)">View Results</button>
+            }
+            @if (exam.status === 'expired') {
+              <button class="btn btn-disabled" disabled>Expired</button>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

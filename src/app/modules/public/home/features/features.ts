@@ -4,7 +4,9 @@ import { Component } from '@angular/core';
   selector: 'app-features',
   imports: [],
   templateUrl: './features.html',
-  styleUrl: './features.css'
+  styleUrls: ['./features.css'],
+  standalone: true,
+
 })
 export class Features {
 

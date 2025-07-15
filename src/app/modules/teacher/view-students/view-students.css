@@ -1,0 +1,283 @@
+/* Student List Container Styles */
+.student-list-container {
+  background-color: #0f1419;
+  min-height: 100vh;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Loading State */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  background-color: #1a202c;
+  border-radius: 12px;
+  border: 1px solid #2d3748;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #2d3748;
+  border-top: 4px solid #8b5cf6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-state p {
+  color: #cbd5e0;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 3rem 2rem;
+  background-color: #1a202c;
+  border-radius: 12px;
+  border: 1px solid #2d3748;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.empty-state h2 {
+  color: #f7fafc;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.empty-state p {
+  color: #a0aec0;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* Students Table Container */
+.students-table {
+  background-color: #1a202c;
+  border-radius: 12px;
+  border: 1px solid #2d3748;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.students-table h1 {
+  color: #f7fafc;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0;
+  padding: 1.5rem 2rem;
+  background-color: #2d3748;
+  border-bottom: 1px solid #4a5568;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #1a202c;
+}
+
+thead {
+  background-color: #2d3748;
+  border-bottom: 2px solid #4a5568;
+}
+
+th {
+  padding: 1rem 1.5rem;
+  text-align: left;
+  font-weight: 600;
+  color: #f7fafc;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #4a5568;
+}
+
+tbody tr {
+  border-bottom: 1px solid #2d3748;
+  transition: background-color 0.2s ease;
+}
+
+tbody tr:hover {
+  background-color: #2d3748;
+}
+
+tbody tr:last-child {
+  border-bottom: none;
+}
+
+td {
+  padding: 1rem 1.5rem;
+  color: #cbd5e0;
+  font-size: 0.95rem;
+  vertical-align: middle;
+}
+
+/* First column (index) styling */
+td:first-child {
+  color: #a0aec0;
+  font-weight: 500;
+  width: 60px;
+}
+
+/* Email styling */
+td:nth-child(3) {
+  color: #06b6d4;
+  font-family: monospace;
+}
+
+/* Date styling */
+td:nth-child(4) {
+  color: #a0aec0;
+  font-size: 0.9rem;
+}
+
+/* Exams taken styling */
+td:nth-child(5) {
+  color: #f7fafc;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Average score styling */
+td:nth-child(6) {
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Score color coding */
+td:nth-child(6)[data-score="high"] {
+  color: #10b981;
+}
+
+td:nth-child(6)[data-score="medium"] {
+  color: #f59e0b;
+}
+
+td:nth-child(6)[data-score="low"] {
+  color: #f56565;
+}
+
+/* Button Styles */
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.btn-secondary {
+  background-color: #8b5cf6;
+  color: #f7fafc;
+  border-color: #8b5cf6;
+}
+
+.btn-secondary:hover {
+  background-color: #7c3aed;
+  border-color: #7c3aed;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(139, 92, 246, 0.3);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(139, 92, 246, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .student-list-container {
+    padding: 1rem;
+  }
+  
+  .students-table {
+    overflow-x: auto;
+  }
+  
+  table {
+    min-width: 700px;
+  }
+  
+  th, td {
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .students-table h1 {
+    font-size: 1.5rem;
+    padding: 1rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .student-list-container {
+    padding: 0.5rem;
+  }
+  
+  th, td {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+  
+  .btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Additional hover effects for better UX */
+.students-table {
+  position: relative;
+  overflow: hidden;
+}
+
+.students-table::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.students-table:hover::before {
+  left: 100%;
+}
+
+/* Smooth scrollbar for overflow */
+.students-table::-webkit-scrollbar {
+  height: 8px;
+}
+
+.students-table::-webkit-scrollbar-track {
+  background: #2d3748;
+}
+
+.students-table::-webkit-scrollbar-thumb {
+  background: #8b5cf6;
+  border-radius: 4px;
+}
+
+.students-table::-webkit-scrollbar-thumb:hover {
+  background: #7c3aed;
+}

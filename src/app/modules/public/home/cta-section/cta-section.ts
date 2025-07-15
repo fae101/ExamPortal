@@ -4,7 +4,9 @@ import { Component } from '@angular/core';
   selector: 'app-cta-section',
   imports: [],
   templateUrl: './cta-section.html',
-  styleUrl: './cta-section.css'
+  styleUrls: ['./cta-section.css'],
+  standalone: true,
+
 })
 export class CtaSection {
 
