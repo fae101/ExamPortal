@@ -7,7 +7,7 @@ import { Login } from './modules/public/login/login';
 export const routes: Routes = [
 {path:'',redirectTo:'teacher/create-exam',pathMatch:'full'},
 
-{path:'teacher/create-exam',component:CreateExam}
+{path:'teacher/create-exam',component:CreateExam},
 {path:'register', component:Register},
 { path: '', component: Home },
 {path:'login',component:Login}
