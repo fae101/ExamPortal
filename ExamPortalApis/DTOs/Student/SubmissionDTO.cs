@@ -1,9 +1,12 @@
-namespace ExamPortalApis.DTOs.Student
+﻿namespace ExamPortalApis.DTOs.Student
 {
   public class SubmissionDTO
   {
-    public Guid ExamId { get; set; }
-    public string AnswersJson { get; set; } // Store answers as a serialized JSON blob
-  }
+    public Guid UserId { get; set; }
 
+    public Guid ExamId { get; set; }
+
+    public Dictionary<Guid, int> Answers{ get; set; }
+    // Guid = Question ID, int = Selected Index
+  }
 }

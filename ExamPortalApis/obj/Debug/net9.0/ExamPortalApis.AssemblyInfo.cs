@@ -13,7 +13,9 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ExamPortalApis")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+487365df146c3b2232f3301b238c0286bba49b43")]
+
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c0f8813a2d2e22817d0c16c6075779c1cc30140a")]
+
 [assembly: System.Reflection.AssemblyProductAttribute("ExamPortalApis")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ExamPortalApis")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

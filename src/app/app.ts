@@ -1,3 +1,4 @@
+
 import { UserTypes } from './modules/public/home/user-types/user-types';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
