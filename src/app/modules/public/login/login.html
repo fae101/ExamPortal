@@ -1,165 +1,85 @@
 <div id="login">
-<div class="login-container">
-        <div class="login-header">
-            <h1>Welcome Back</h1>
-            <p>Please sign in to your account</p>
-        </div>
-
-        <form id="loginForm" novalidate>
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <div class="input-wrapper">
-                    <input 
-                        type="email" 
-                        id="email" 
-                        name="email" 
-                        class="form-control" 
-                        placeholder="Enter your email"
-                        required
-                    >
-                    <span class="error-message" id="emailError"></span>
-                    <span class="success-message" id="emailSuccess"></span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="password">Password</label>
-                <div class="input-wrapper">
-                    <input 
-                        type="password" 
-                        id="password" 
-                        name="password" 
-                        class="form-control" 
-                        placeholder="Enter your password"
-                        required
-                    >
-                    <span class="error-message" id="passwordError"></span>
-                    <span class="success-message" id="passwordSuccess"></span>
-                </div>
-            </div>
-
-            <button type="submit" class="btn-primary" id="submitBtn">
-                <span class="button-text">Sign In</span>
-            </button>
-        </form>
-
-        <div class="forgot-password">
-            <a href="#">Forgot your password?</a>
-        </div>
-
-        <div class="form-footer">
-            <p>Don't have an account? <a href="#">Sign up here</a></p>
-        </div>
+  <div class="login-container">
+    <div class="login-header">
+      <h1>Welcome Back</h1>
+      <p>Please sign in to your account</p>
     </div>
+
+    <form id="loginForm" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <div class="input-wrapper">
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            class="form-control" 
+            placeholder="Enter your email"
+            required
+            formControlName="email"
+            [class.valid]="form.controls['email'].touched && form.controls['email'].valid"
+            [class.invalid]="form.controls['email'].touched && form.controls['email'].invalid" />
+
+          <span class="error-message" 
+                id="emailError" 
+                [class.show]="form.controls['email'].touched && form.controls['email'].invalid">
+            @if (form.controls['email'].errors?.['required']) {
+              Email is required
+            }
+            @if (form.controls['email'].errors?.['email']) {
+              Please enter a valid email address
+            }
+          </span>
+
+          <span class="success-message" 
+                id="emailSuccess" 
+                [class.show]="form.controls['email'].touched && form.controls['email'].valid">
+            Valid email address
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-wrapper">
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            class="form-control" 
+            placeholder="Enter your password"
+            required
+            formControlName="password"
+            [class.valid]="form.controls['password'].touched && form.controls['password'].valid"
+            [class.invalid]="form.controls['password'].touched && form.controls['password'].invalid" />
+
+          <span class="error-message" 
+                id="passwordError" 
+                [class.show]="form.controls['password'].touched && form.controls['password'].invalid">
+            @if (form.controls['password'].errors?.['required']) {
+              Password is required
+            }
+          </span>
+
+          <span class="success-message" 
+                id="passwordSuccess" 
+                [class.show]="form.controls['password'].touched && form.controls['password'].valid">
+            Password looks good
+          </span>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-primary" id="submitBtn">
+        <span class="button-text">Sign In</span>
+      </button>
+    </form>
+
+    <div class="forgot-password">
+      <a href="#">Forgot your password?</a>
+    </div>
+
+    <div class="form-footer">
+      <p>Don't have an account? <a routerLink="/register">Sign up here</a></p>
+    </div>
+  </div>
 </div>
-    <!-- <script>
-        // Simulate Angular-like validation
-        class FormValidator {
-            constructor() {
-                this.form = document.getElementById('loginForm');
-                this.emailInput = document.getElementById('email');
-                this.passwordInput = document.getElementById('password');
-                this.submitBtn = document.getElementById('submitBtn');
-                
-                this.init();
-            }
-
-            init() {
-                this.emailInput.addEventListener('input', () => this.validateEmail());
-                this.emailInput.addEventListener('blur', () => this.validateEmail());
-                
-                this.passwordInput.addEventListener('input', () => this.validatePassword());
-                this.passwordInput.addEventListener('blur', () => this.validatePassword());
-                
-                this.form.addEventListener('submit', (e) => this.handleSubmit(e));
-            }
-
-            validateEmail() {
-                const email = this.emailInput.value;
-                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                const errorEl = document.getElementById('emailError');
-                const successEl = document.getElementById('emailSuccess');
-
-                if (!email) {
-                    this.showError(this.emailInput, errorEl, 'Email is required');
-                    this.hideSuccess(successEl);
-                    return false;
-                } else if (!emailPattern.test(email)) {
-                    this.showError(this.emailInput, errorEl, 'Please enter a valid email address');
-                    this.hideSuccess(successEl);
-                    return false;
-                } else {
-                    this.hideError(this.emailInput, errorEl);
-                    this.showSuccess(this.emailInput, successEl, 'Valid email address');
-                    return true;
-                }
-            }
-
-            validatePassword() {
-                const password = this.passwordInput.value;
-                const errorEl = document.getElementById('passwordError');
-                const successEl = document.getElementById('passwordSuccess');
-
-                if (!password) {
-                    this.showError(this.passwordInput, errorEl, 'Password is required');
-                    this.hideSuccess(successEl);
-                    return false;
-                } else if (password.length < 6) {
-                    this.showError(this.passwordInput, errorEl, 'Password must be at least 6 characters');
-                    this.hideSuccess(successEl);
-                    return false;
-                } else {
-                    this.hideError(this.passwordInput, errorEl);
-                    this.showSuccess(this.passwordInput, successEl, 'Password looks good');
-                    return true;
-                }
-            }
-
-            showError(input, errorEl, message) {
-                input.classList.add('invalid');
-                input.classList.remove('valid');
-                errorEl.textContent = message;
-                errorEl.classList.add('show');
-            }
-
-            hideError(input, errorEl) {
-                input.classList.remove('invalid');
-                errorEl.classList.remove('show');
-            }
-
-            showSuccess(input, successEl, message) {
-                input.classList.add('valid');
-                input.classList.remove('invalid');
-                successEl.textContent = message;
-                successEl.classList.add('show');
-            }
-
-            hideSuccess(successEl) {
-                successEl.classList.remove('show');
-            }
-
-            handleSubmit(e) {
-                e.preventDefault();
-                
-                const isEmailValid = this.validateEmail();
-                const isPasswordValid = this.validatePassword();
-
-                if (isEmailValid && isPasswordValid) {
-                    this.submitBtn.disabled = true;
-                    this.submitBtn.innerHTML = '<span class="loading-spinner"></span>Signing In...';
-                    
-                    // Simulate API call
-                    setTimeout(() => {
-                        alert('Login successful! (This is a demo)');
-                        this.submitBtn.disabled = false;
-                        this.submitBtn.innerHTML = '<span class="button-text">Sign In</span>';
-                    }, 2000);
-                }
-            }
-        }
-
-        // Initialize the form validator when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            new FormValidator();
-        });
-    </script> -->
