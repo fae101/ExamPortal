@@ -1,0 +1,138 @@
+<div class="submission-history-container">
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1 class="page-title">Submission History</h1>
+    <p class="page-subtitle">View your exam results and performance history</p>
+  </div>
+
+  <!-- Performance Summary -->
+  <div class="performance-summary">
+    <div class="summary-card">
+      <div class="summary-icon">📊</div>
+      <div class="summary-content">
+        <h3>Total Exams</h3>
+        <p class="summary-value">3</p>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <div class="summary-icon">✅</div>
+      <div class="summary-content">
+        <h3>Completed</h3>
+        <p class="summary-value">2</p>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <div class="summary-icon">⏳</div>
+      <div class="summary-content">
+        <h3>Pending</h3>
+        <p class="summary-value">1</p>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <div class="summary-icon">🎯</div>
+      <div class="summary-content">
+        <h3>Average Score</h3>
+        <p class="summary-value">76%</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filters and Controls -->
+  <div class="controls-section">
+    <div class="filters">
+      <div class="filter-group">
+        <label for="status-filter">Filter by Status:</label>
+        <select id="status-filter" class="filter-select">
+          <option value="all">All Submissions</option>
+          <option value="graded">Graded</option>
+          <option value="pending">Pending</option>
+          <option value="reviewed">Reviewed</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="sort-select">Sort by:</label>
+        <select id="sort-select" class="filter-select">
+          <option value="date">Date Submitted</option>
+          <option value="score">Score</option>
+          <option value="title">Exam Title</option>
+        </select>
+      </div>
+
+      <button class="sort-order-btn" title="Sort Descending">
+        <span class="sort-icon">↓</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div class="loading-state">
+    <div class="spinner"></div>
+    <p>Loading submission history...</p>
+  </div>
+
+  <!-- Submissions List -->
+  <div class="submissions-list">
+    <div class="submission-card">
+      <div class="submission-header">
+        <div class="exam-info">
+          <h3 class="exam-title">Mathematics Final Exam</h3>
+          <p class="submission-date">Submitted: Dec 1, 2024, 11:12 AM</p>
+        </div>
+        <div class="submission-status">
+          <span class="status-badge status-graded">Graded</span>
+        </div>
+      </div>
+
+      <div class="submission-body">
+        <div class="score-section">
+          <div class="score-display">
+            <div class="score-circle grade-B">
+              <span class="score-percentage">76%</span>
+              <span class="score-grade">B</span>
+            </div>
+          </div>
+
+          <div class="score-details">
+            <div class="detail-row">
+              <span class="detail-label">Score:</span>
+              <span class="detail-value">76/100</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Correct:</span>
+              <span class="detail-value">19/25</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Time:</span>
+              <span class="detail-value">1h 28m / 2h 0m</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="progress-section">
+          <div class="progress-bar">
+            <div class="progress-fill grade-B" style="width: 76%"></div>
+          </div>
+          <div class="progress-stats">
+            <span>19 correct answers</span>
+            <span>6 incorrect</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="submission-actions">
+        <button class="btn btn-primary">View Details</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty-state">
+    <div class="empty-icon">📋</div>
+    <h3>No Submissions Found</h3>
+    <p>You haven't submitted any exams yet.</p>
+  </div>
+</div>
