@@ -5072,23 +5072,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\compu magic\\.nuget\\packages\\": {},
+    "C:\\Users\\Dell\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\ITI projects\\Angulaer Exam Portal\\ExamPortal\\ExamPortalApis\\ExamPortalApis.csproj",
+      "projectUniqueName": "D:\\iti.net\\Angular project\\ExamPortal\\ExamPortalApis\\ExamPortalApis.csproj",
       "projectName": "ExamPortalApis",
-      "projectPath": "E:\\ITI projects\\Angulaer Exam Portal\\ExamPortal\\ExamPortalApis\\ExamPortalApis.csproj",
-      "packagesPath": "C:\\Users\\compu magic\\.nuget\\packages\\",
-      "outputPath": "E:\\ITI projects\\Angulaer Exam Portal\\ExamPortal\\ExamPortalApis\\obj\\",
+      "projectPath": "D:\\iti.net\\Angular project\\ExamPortal\\ExamPortalApis\\ExamPortalApis.csproj",
+      "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
+      "outputPath": "D:\\iti.net\\Angular project\\ExamPortal\\ExamPortalApis\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\compu magic\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -5097,6 +5097,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -5171,7 +5172,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
