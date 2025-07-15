@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService, RegisterDTO, UserResponseDTO } from '../../../../core/services/auth.service';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -15,33 +17,22 @@ export class Register {
   strengthClass: string = '';
   requirements: Record<string, boolean> = {};
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
     this.form = this.fb.group({
       UserName: [
         '',
-        [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.pattern(/^[a-zA-Z0-9_]+$/)
-        ]
+        [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9_]+$/)]
       ],
-      Email: [
-        '',
-        [Validators.required, Validators.email]
-      ],
+      Email: ['', [Validators.required, Validators.email]],
       Password: ['', [Validators.required]],
       FullName: [
         '',
-        [
-          Validators.required,
-          Validators.pattern(/^[a-zA-Z\s]+$/)
-        ]
+        [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/)]
       ],
-      CreatedAt: ['', Validators.required],
-      Role: ['', Validators.required]
+      CreatedAt: [new Date().toISOString()],
+      Role: ['student']
     });
 
-    //  Trigger password strength checker when password changes
     this.form.controls['Password'].valueChanges.subscribe(password => {
       this.updatePasswordStrength(password ?? '');
     });
@@ -51,32 +42,44 @@ export class Register {
     const reqs = {
       length: password.length >= 8,
       special: /[_!@#$%^&*(),.?":{}|<>]/.test(password),
-      number: /[0-9]/.test(password),
+      number: /\d/.test(password),
       upper: /[A-Z]/.test(password),
       lower: /[a-z]/.test(password)
     };
 
     this.requirements = reqs;
 
-    const met = Object.values(reqs).filter(x => x).length;
-    const strength = met / 5;
-
+    const strength = Object.values(reqs).filter(x => x).length / 5;
     this.strengthClass = strength <= 0.4 ? 'weak'
-                      : strength <= 0.6 ? 'fair'
-                      : strength <= 0.8 ? 'good'
-                      : 'strong';
+                        : strength <= 0.6 ? 'fair'
+                        : strength <= 0.8 ? 'good'
+                        : 'strong';
   }
 
   submit() {
-    if (this.form.valid) {
-      console.log('Sign Up Successfully!', this.form.value);
-      alert('🎉 Registered Successfully!\n\n' + JSON.stringify(this.form.value, null, 2));
-    } else {
-      Object.values(this.form.controls).forEach(control => control.markAsTouched());
-    }
-  }
+  if (this.form.valid) {
+    const formData = this.form.value;
 
-  showLoginMessage() {
-    alert('You will be redirected to the login page');
+    const payload: RegisterDTO = {
+      ...formData,
+        Username: formData.UserName,       
+        YourUserName: formData.UserName 
+    };
+
+    this.auth.register(payload).subscribe({
+      next: (res: UserResponseDTO) => {
+        localStorage.setItem('token', res.token);
+        localStorage.setItem('user', JSON.stringify(res));
+        alert('Welcome, ' + res.user_name + ' 🎉');
+        this.router.navigate(['/student']);
+      },
+      error: (err) => {
+        alert('Registration failed: ' + err.message);
+      }
+    });
+  } else {
+    Object.values(this.form.controls).forEach(c => c.markAsTouched());
   }
+}
+
 }

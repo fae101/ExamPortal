@@ -10,4 +10,5 @@ public class UserResponseDTO
     public string Email { get; set; }
     public string Password { get; set; }
     public string Role { get; set; } // Optional: default to "student"
+    public string Token { get; set; }
 }

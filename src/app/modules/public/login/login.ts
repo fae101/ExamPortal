@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService, UserResponseDTO } from '../../../core/services/auth.service';
 import { RouterLink } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -10,31 +13,39 @@ import { RouterLink } from '@angular/router';
 })
 export class Login {
   form: FormGroup;
+  loading = false;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router
+  ) {
     this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      UserName: [
+        '',
+        [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9_]+$/)]
+      ],
+      Password: ['', Validators.required]
     });
   }
 
   submit() {
-  if (this.form.valid) {
-    const btn = document.getElementById('submitBtn') as HTMLButtonElement;
-    const text = btn.querySelector('.button-text');
-    if (text) text.innerHTML = '<span class="loading-spinner"></span> Signing In...';
-    btn.disabled = true;
+    if (this.form.valid) {
+      this.loading = true;
+      const payload = this.form.value;
 
-    setTimeout(() => {
-      alert('Login successful! (This is a demo)');
-      if (text) text.textContent = 'Sign In';
-      btn.disabled = false;
-    }, 2000);
-
-    console.log('Login data:', this.form.value);
-  } else {
-    Object.values(this.form.controls).forEach(control => control.markAsTouched());
+      this.auth.login(payload).subscribe({
+        next: (res: UserResponseDTO) => {
+          alert('Welcome back, ' + res.user_name);
+          this.router.navigate([res.role === 'admin' ? '/dashboard' : '/student']);
+        },
+        error: (err) => {
+          alert('Login failed: ' + err.message);
+          this.loading = false;
+        }
+      });
+    } else {
+      Object.values(this.form.controls).forEach(c => c.markAsTouched());
+    }
   }
-}
-
 }

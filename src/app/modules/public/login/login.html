@@ -6,38 +6,42 @@
     </div>
 
     <form id="loginForm" [formGroup]="form" (ngSubmit)="submit()" novalidate>
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <div class="input-wrapper">
-          <input 
-            type="email" 
-            id="email" 
-            name="email" 
-            class="form-control" 
-            placeholder="Enter your email"
-            required
-            formControlName="email"
-            [class.valid]="form.controls['email'].touched && form.controls['email'].valid"
-            [class.invalid]="form.controls['email'].touched && form.controls['email'].invalid" />
+        <div class="form-group">
+  <label for="username">Username</label>
+  <div class="input-wrapper">
+    <input 
+      type="text" 
+      id="username" 
+      name="username" 
+      class="form-control" 
+      placeholder="Enter your username"
+      required
+      formControlName="UserName"
+      [class.valid]="form.controls['UserName'] && form.controls['UserName'].valid"
+      [class.invalid]="form.controls['UserName'] && form.controls['UserName'].invalid" />
 
-          <span class="error-message" 
-                id="emailError" 
-                [class.show]="form.controls['email'].touched && form.controls['email'].invalid">
-            @if (form.controls['email'].errors?.['required']) {
-              Email is required
-            }
-            @if (form.controls['email'].errors?.['email']) {
-              Please enter a valid email address
-            }
-          </span>
+    <span class="error-message" 
+      id="usernameError" 
+      [class.show]="form.controls['UserName'] && form.controls['UserName'].invalid">
+  @if (form.controls['UserName'].errors?.['required']) {
+    Username is required
+  }
+  @if (form.controls['UserName'].errors?.['pattern']) {
+    Please enter a valid username
+  }
+  @if (form.controls['UserName'].errors?.['minlength']) {
+    Minimum 3 characters required
+  }
+</span>
 
-          <span class="success-message" 
-                id="emailSuccess" 
-                [class.show]="form.controls['email'].touched && form.controls['email'].valid">
-            Valid email address
-          </span>
-        </div>
-      </div>
+
+    <span class="success-message" 
+          id="usernameSuccess" 
+          [class.show]="form.controls['UserName'] && form.controls['UserName'].valid">
+      Valid username
+    </span>
+  </div>
+</div>
 
       <div class="form-group">
         <label for="password">Password</label>
@@ -49,21 +53,21 @@
             class="form-control" 
             placeholder="Enter your password"
             required
-            formControlName="password"
-            [class.valid]="form.controls['password'].touched && form.controls['password'].valid"
-            [class.invalid]="form.controls['password'].touched && form.controls['password'].invalid" />
+            formControlName="Password"
+            [class.valid]="form.controls['Password'] && form.controls['Password'].valid"
+            [class.invalid]="form.controls['Password'] && form.controls['Password'].invalid" />
 
           <span class="error-message" 
                 id="passwordError" 
-                [class.show]="form.controls['password'].touched && form.controls['password'].invalid">
-            @if (form.controls['password'].errors?.['required']) {
+                [class.show]="form.controls['Password'] && form.controls['Password'].invalid">
+            @if (form.controls['Password'].errors?.['required']) {
               Password is required
             }
           </span>
 
           <span class="success-message" 
                 id="passwordSuccess" 
-                [class.show]="form.controls['password'].touched && form.controls['password'].valid">
+                [class.show]="form.controls['Password'] && form.controls['Password'].valid">
             Password looks good
           </span>
         </div>
@@ -74,9 +78,9 @@
       </button>
     </form>
 
-    <div class="forgot-password">
+    <!-- <div class="forgot-password">
       <a href="#">Forgot your password?</a>
-    </div>
+    </div> -->
 
     <div class="form-footer">
       <p>Don't have an account? <a routerLink="/register">Sign up here</a></p>

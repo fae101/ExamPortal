@@ -36,7 +36,7 @@ namespace ExamPortalApis.Controllers
     }
 
     // GET: /api/submissions/exam/{examId}
-    [Authorize(Roles = "Teacher")]
+    [Authorize(Roles = "Admin")]
     [HttpGet("exam/{examId}")]
     public IActionResult GetExamSubmissions(Guid examId)
     {
