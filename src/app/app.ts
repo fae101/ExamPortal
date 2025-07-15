@@ -1,14 +1,13 @@
 
 import { UserTypes } from './modules/public/home/user-types/user-types';
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { RouterModule } from '@angular/router';
-import { Home } from "./modules/public/home/home";
-import { Register } from './modules/public/register/register/register';
+import { Home } from "./home/home";
+import { CreateExam } from './modules/teacher/pages/create-exam/create-exam';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterModule],
+  imports: [Home,CreateExam],
+
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
   standalone: true,
