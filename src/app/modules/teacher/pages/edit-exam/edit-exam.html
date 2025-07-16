@@ -1,0 +1,44 @@
+<div class="page-container">
+  <h2>Edit Exam</h2>
+
+  <!--added -->
+  <div *ngIf="loading" class="loading">Loading exam...</div>
+
+  <form [formGroup]="examForm" (ngSubmit)="update()" *ngIf="!loading">
+    <input class="custom-input" formControlName="title" placeholder="Title" />
+    <textarea class="custom-input" formControlName="description" placeholder="Description"></textarea>
+
+    <div formArrayName="questions">
+      <div *ngFor="let question of questions.controls; let i=index" [formGroupName]="i" class="question-card">
+
+
+   <!-- remove button -->
+        <button type="button" (click)="removeQuestion(i)" class="remove-btn">×</button>
+
+        <h3>Question {{i + 1}}</h3>
+
+        <input class="custom-input" formControlName="text" placeholder="Question Text" />
+
+        <div formArrayName="options">
+           <h4>Options:</h4>
+          <div *ngFor="let opt of question.get('options').controls; let j=index">
+            <input class="custom-input" [formControlName]="j" placeholder="Option {{j + 1}}" />
+          </div>
+        </div>
+
+        <input class="custom-input" formControlName="correctAnswer" placeholder="Correct Answer" />
+      </div>
+    </div>
+
+       <!-- add button-->
+    <button type="button" (click)="addQuestion()" class="custom-btn-secondary">
+      Add Question
+    </button>
+
+    <!-- <button type="submit" class="custom-btn-primary">Update Exam</button> -->
+   <!-- changed-->
+    <button type="submit" [disabled]="saving" class="custom-btn-primary">
+      {{saving ? 'Updating...' : 'Update Exam'}}
+    </button>
+  </form>
+</div>
