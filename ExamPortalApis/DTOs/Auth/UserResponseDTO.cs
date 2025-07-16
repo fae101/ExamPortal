@@ -11,4 +11,5 @@ public class UserResponseDTO
     public string Password { get; set; }
     public string Role { get; set; } // Optional: default to "student"
     public string Token { get; set; }
+    public string UserId { get; set; } // Add UserId property
 }

@@ -57,29 +57,30 @@ export class Register {
   }
 
   submit() {
-  if (this.form.valid) {
-    const formData = this.form.value;
+    if (this.form.valid) {
+      const formData = this.form.value;
 
-    const payload: RegisterDTO = {
-      ...formData,
+      const payload: RegisterDTO = {
+        ...formData,
         Username: formData.UserName,       
         YourUserName: formData.UserName 
-    };
+      };
 
-    this.auth.register(payload).subscribe({
-      next: (res: UserResponseDTO) => {
-        localStorage.setItem('token', res.token);
-        localStorage.setItem('user', JSON.stringify(res));
-        alert('Welcome, ' + res.user_name + ' 🎉');
-        this.router.navigate(['/student']);
-      },
-      error: (err) => {
-        alert('Registration failed: ' + err.message);
-      }
-    });
-  } else {
-    Object.values(this.form.controls).forEach(c => c.markAsTouched());
+      this.auth.register(payload).subscribe({
+        next: (res: UserResponseDTO) => {
+          localStorage.setItem('token', res.token);
+          localStorage.setItem('user', JSON.stringify(res));
+          localStorage.setItem('userId', res.userId || 'temp-user-id');
+          
+          alert('Welcome, ' + res.user_name + ' 🎉');
+          this.router.navigate(['/student']);
+        },
+        error: (err) => {
+          alert('Registration failed: ' + err.message);
+        }
+      });
+    } else {
+      Object.values(this.form.controls).forEach(c => c.markAsTouched());
+    }
   }
-}
-
 }

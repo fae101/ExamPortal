@@ -29,6 +29,7 @@ export interface AnswerPayload {
 
 export interface SubmissionDTO {
   userId: string;
+  examId: string;
   answers: AnswerPayload;
 }
 
@@ -48,6 +49,17 @@ export interface Result {
   }>;
 }
 
+export interface SubmissionHistory {
+  id: string;
+  examId: string;
+  submittedAt: string;
+  result?: {
+    score: number;
+    totalPoints: number;
+    grade: string;
+  };
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -61,7 +73,7 @@ export class StudentService {
     return new HttpHeaders({ Authorization: `Bearer ${token}` });
   }
 
-  /** Get all published exams */
+  /** Get all published exams - GET /api/student/exams */
   getPublishedExams(): Observable<ExamOverview[]> {
     return this.http.get<ExamOverview[]>(
       `${this.baseUrl}/student/exams`,
@@ -69,7 +81,7 @@ export class StudentService {
     );
   }
 
-  /** Get details of a specific exam */
+  /** Get details of a specific exam - GET /api/student/exam/:id */
   getExamDetails(examId: string): Observable<ExamDetail> {
     return this.http.get<ExamDetail>(
       `${this.baseUrl}/student/exam/${examId}`,
@@ -77,7 +89,7 @@ export class StudentService {
     );
   }
 
-  /** Submit answers to an exam */
+  /** Submit answers to an exam - POST /api/student/exam/:id/submit */
   submitAnswers(examId: string, payload: SubmissionDTO): Observable<any> {
     return this.http.post(
       `${this.baseUrl}/student/exam/${examId}/submit`,
@@ -86,18 +98,18 @@ export class StudentService {
     );
   }
 
-  /** Get results for a specific exam */
-  getResult(examId: string): Observable<Result> {
-    return this.http.get<Result>(
-      `${this.baseUrl}/submission/result/${examId}`,
+  /** Get submission history for user - GET /api/submission/user/:userId */
+  getSubmissionHistory(userId: string): Observable<SubmissionHistory[]> {
+    return this.http.get<SubmissionHistory[]>(
+      `${this.baseUrl}/submission/user/${userId}`,
       { headers: this.getAuthHeaders() }
     );
   }
 
-  /** Get all submissions by user */
-  getSubmissionHistory(userId: string): Observable<any[]> {
-    return this.http.get<any[]>(
-      `${this.baseUrl}/submission/user/${userId}`,
+  /** Get results for a specific exam - GET /api/submission/result/:examId */
+  getResult(examId: string): Observable<Result> {
+    return this.http.get<Result>(
+      `${this.baseUrl}/submission/result/${examId}`,
       { headers: this.getAuthHeaders() }
     );
   }

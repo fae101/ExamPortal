@@ -1,8 +1,7 @@
-
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService, UserResponseDTO } from '../../../core/services/auth.service';
+import { AuthService, LoginDTO, UserResponseDTO } from '../../../core/services/auth.service';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -14,13 +13,11 @@ import { RouterLink } from '@angular/router';
 })
 export class Login {
   form: FormGroup;
-  loading = false;
 
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    private router: Router,
-    
+    private router: Router
   ) {
     this.form = this.fb.group({
       UserName: [
@@ -33,38 +30,32 @@ export class Login {
 
   submit() {
     if (this.form.valid) {
-      this.loading = true;
-      const payload = this.form.value;
+      const payload: LoginDTO = {
+        Username: this.form.value.UserName,
+        Password: this.form.value.Password
+      };
 
-     this.auth.login(payload).subscribe({
-      
- next: (res: any) => {
-  const userId = res.id;
-  const role = res.role;
-
-  localStorage.setItem('userId', res.userId);
-  localStorage.setItem('token', res.token);
-  localStorage.setItem('user', JSON.stringify(res));
-  
-  alert('Welcome Back, ' + res.user_name + ' 🎉');
-
-  switch (role) {
-    case 'student':
-      this.router.navigate(['/student']);
-      break;
-    case 'teacher':
-    case 'admin':
-      this.router.navigate(['/dashboard']);
-      break;
-    default:
-      this.router.navigate(['/']);
-      break;}
-
-  },
-  error: (err) => {
-    alert('Login failed: ' + err.message);
-  }
-});
+      this.auth.login(payload).subscribe({
+        next: (res: UserResponseDTO) => {
+          localStorage.setItem('token', res.token);
+          localStorage.setItem('user', JSON.stringify(res));
+          localStorage.setItem('userId', res.userId || 'temp-user-id');
+          
+          alert('Welcome back, ' + res.user_name + ' 🎉');
+          
+          // Route based on role
+          if (res.role?.toLowerCase() === 'student') {
+            this.router.navigate(['/student']);
+          } else if (res.role?.toLowerCase() === 'admin' || res.role?.toLowerCase() === 'teacher') {
+            this.router.navigate(['/teacher']);
+          } else {
+            this.router.navigate(['/']);
+          }
+        },
+        error: (err) => {
+          alert('Login failed: ' + err.message);
+        }
+      });
     } else {
       Object.values(this.form.controls).forEach(c => c.markAsTouched());
     }

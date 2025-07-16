@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { RouterModule,Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { CreateExam } from './modules/teacher/pages/create-exam/create-exam';
 import { Home } from './modules/public/home/home';
 import { Register } from './modules/public/register/register/register';
@@ -12,6 +11,7 @@ import { ExamResult } from './modules/student/components/exam-results/exam-resul
 import { StudentDashboard } from './modules/student/student-dashboard/student-dashboard';
 
 export const routes: Routes = [
+
 
 {path: '', component: Home },
 {path:'teacher/create-exam',component:CreateExam},
@@ -31,3 +31,4 @@ export const routes: Routes = [
 
 
 ];
+
