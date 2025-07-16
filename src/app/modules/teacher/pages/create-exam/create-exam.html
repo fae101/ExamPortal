@@ -1,72 +1,148 @@
-<div class="page-container">
-  <h2>Create New Exam</h2>
+<div class="create-exam-container">
+  <div class="header">
+    <h1>Create New Exam</h1>
+    <p>Fill in the details below to create a new exam</p>
+  </div>
 
-  <form [formGroup]="examForm" (ngSubmit)="submit()">
-    <input class="custom-input" formControlName="title" placeholder="Title" />
-    <textarea class="custom-input" formControlName="description" placeholder="Description"></textarea>
-
-    <div formArrayName="questions">
-      <div *ngFor="let question of questions.controls; let i=index" [formGroupName]="i" class="question-card">
-        <input class="custom-input" formControlName="text" placeholder="Question Text" />
-
-        <div formArrayName="options">
-          <div *ngFor="let opt of getQuestionOptions(i).controls; let j=index">
-            <input class="custom-input" [formControlName]="j" placeholder="Option {{j + 1}}" />
-          </div>
+  <form [formGroup]="examForm" (ngSubmit)="submit()" class="exam-form">
+    <!-- Basic Exam Information -->
+    <div class="form-section">
+      <h2>Exam Information</h2>
+      
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="examName">Exam Name *</label>
+          <input 
+            type="text" 
+            id="examName" 
+            formControlName="examName"
+            placeholder="Enter exam name"
+            class="form-control"
+          />
         </div>
 
-        <input class="custom-input" formControlName="correctAnswer" placeholder="Correct Answer" />
+        <div class="form-group">
+          <label for="subject">Subject *</label>
+          <input 
+            type="text" 
+            id="subject" 
+            formControlName="subject"
+            placeholder="Enter subject"
+            class="form-control"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="duration">Duration (minutes) *</label>
+          <input 
+            type="number" 
+            id="duration" 
+            formControlName="duration"
+            placeholder="Enter duration in minutes"
+            class="form-control"
+            min="1"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="date">Date *</label>
+          <input 
+            type="date" 
+            id="date" 
+            formControlName="date"
+            class="form-control"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="time">Time *</label>
+          <input 
+            type="time" 
+            id="time" 
+            formControlName="time"
+            class="form-control"
+          />
+        </div>
       </div>
     </div>
 
-    <button type="button" class="custom-btn-secondary" (click)="addQuestion()">+ Add Question</button>
-    <button type="submit" class="custom-btn-primary">Create Exam</button>
+    <!-- Questions Section -->
+    <div class="form-section">
+      <div class="section-header">
+        <h2>Questions</h2>
+        <button type="button" (click)="addQuestion()" class="btn btn-primary">
+          Add Question
+        </button>
+      </div>
+
+      <div class="questions-container" formArrayName="questions">
+        <div 
+          *ngFor="let question of questions.controls; let i = index" 
+          class="question-card"
+          [formGroupName]="i"
+        >
+          <div class="question-header">
+            <h3>Question {{i + 1}}</h3>
+            <button 
+              type="button" 
+              (click)="removeQuestion(i)"
+              class="btn btn-danger btn-sm"
+            >
+              Remove
+            </button>
+          </div>
+
+          <div class="form-group">
+            <label>Question Text *</label>
+            <textarea 
+              formControlName="text"
+              placeholder="Enter your question here..."
+              class="form-control"
+              rows="3"
+            ></textarea>
+          </div>
+
+          <div class="options-container" formArrayName="options">
+            <label>Options *</label>
+            <div class="options-grid">
+              <div 
+                *ngFor="let option of getQuestionOptions(i).controls; let j = index" 
+                class="option-group"
+              >
+                <span class="option-label">{{ getOptionLabel(j) }}.</span>
+                <input 
+                  type="text" 
+                  [formControlName]="j"
+                  placeholder="Enter option {{ getOptionLabel(j) }}"
+                  class="form-control"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Correct Answer *</label>
+            <select formControlName="correctAnswer" class="form-control">
+              <option value="">Select correct answer</option>
+              <option value="0">A</option>
+              <option value="1">B</option>
+              <option value="2">C</option>
+              <option value="3">D</option>
+            </select>
+          </div>
+        </div>
+
+        <div *ngIf="questions.length === 0" class="no-questions">
+          <p>No questions added yet. Click "Add Question" to get started.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="form-actions">
+      <button type="submit" class="btn btn-success btn-lg">
+        Create Exam
+      </button>
+    </div>
   </form>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div class="page-container">
-  <h2>Create New Exam</h2>
-
-  <form [formGroup]="examForm" (ngSubmit)="submit()">
-    <input class="custom-input" formControlName="title" placeholder="Title" />
-    <textarea class="custom-input" formControlName="description" placeholder="Description"></textarea>
-
-    <div formArrayName="questions">
-      <div *ngFor="let question of questions.controls; let i=index" [formGroupName]="i" class="question-card">
-        <input class="custom-input" formControlName="text" placeholder="Question Text" />
-
-        <div formArrayName="options">
-          <div *ngFor="let opt of question.get('options').controls; let j=index">
-            <input class="custom-input" [formControlName]="j" placeholder="Option {{j + 1}}" />
-          </div>
-        </div>
-
-           <div formArrayName="options">
-          <div *ngFor="let opt of (question.get('options')as FormArray)?.controls; let j=index">
-            <input class="custom-input" [formControlName]="j" placeholder="Option {{j + 1}}" />
-          </div>
-        </div>
-
-        <input class="custom-input" formControlName="correctAnswer" placeholder="Correct Answer" />
-      </div>
-    </div>
-
-    <button type="button" class="custom-btn-secondary" (click)="addQuestion()">+ Add Question</button>
-    <button type="submit" class="custom-btn-primary">Create Exam</button>
-  </form>
-</div> -->

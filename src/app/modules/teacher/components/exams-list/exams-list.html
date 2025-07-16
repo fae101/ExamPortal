@@ -1,96 +1,47 @@
- <div class="exams-container">
-        <div class="header">
-            <h2>Admin Dashboard</h2>
-            <div class="stats">
-                <span class="stat-item">Total Exams: <span id="exam-count">5</span></span>
-            </div>
-        </div>
-        
-        <div class="table-container">
-            <table class="exams-table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Exam Name</th>
-                        <th>Subject</th>
-                        <th>Date</th>
-                        <th>Duration</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>001</td>
-                        <td>Mathematics Final</td>
-                        <td>Mathematics</td>
-                        <td>Dec 20, 2024, 9:00 AM</td>
-                        <td>120 mins</td>
-                        <td>
-                            <span class="status active">Active</span>
-                        </td>
-                        <td>
-                            <button onclick="editExam('001')" class="btn btn-edit">Edit</button>
-                            <button onclick="deleteExam('001')" class="btn btn-delete">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>Physics Midterm</td>
-                        <td>Physics</td>
-                        <td>Dec 22, 2024, 2:00 PM</td>
-                        <td>90 mins</td>
-                        <td>
-                            <span class="status draft">Draft</span>
-                        </td>
-                        <td>
-                            <button onclick="editExam('002')" class="btn btn-edit">Edit</button>
-                            <button onclick="deleteExam('002')" class="btn btn-delete">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>003</td>
-                        <td>Chemistry Quiz</td>
-                        <td>Chemistry</td>
-                        <td>Dec 25, 2024, 10:00 AM</td>
-                        <td>60 mins</td>
-                        <td>
-                            <span class="status active">Active</span>
-                        </td>
-                        <td>
-                            <button onclick="editExam('003')" class="btn btn-edit">Edit</button>
-                            <button onclick="deleteExam('003')" class="btn btn-delete">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>004</td>
-                        <td>Biology Test</td>
-                        <td>Biology</td>
-                        <td>Dec 28, 2024, 11:00 AM</td>
-                        <td>75 mins</td>
-                        <td>
-                            <span class="status draft">Draft</span>
-                        </td>
-                        <td>
-                            <button onclick="editExam('004')" class="btn btn-edit">Edit</button>
-                            <button onclick="deleteExam('004')" class="btn btn-delete">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>005</td>
-                        <td>English Literature</td>
-                        <td>English</td>
-                        <td>Dec 30, 2024, 1:00 PM</td>
-                        <td>100 mins</td>
-                        <td>
-                            <span class="status active">Active</span>
-                        </td>
-                        <td>
-                            <button onclick="editExam('005')" class="btn btn-edit">Edit</button>
-                            <button onclick="deleteExam('005')" class="btn btn-delete">Delete</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+<div class="exams-container">
+    <div class="header">
+        <h2>Admin Dashboard</h2>
+        <div class="stats">
+            <span class="stat-item">Total Exams: <span id="exam-count">{{ exams.length }}</span></span>
         </div>
     </div>
+    
+    <div class="table-container">
+        <table class="exams-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Exam Name</th>
+                    <th>Subject</th>
+                    <th>Date</th>
+                    <th>Duration</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let exam of exams">
+                    <td>{{ exam.id }}</td>
+                    <td>{{ exam.name }}</td>
+                    <td>{{ exam.subject }}</td>
+                    <td>{{ exam.date | date:'MMM d, yyyy, h:mm a' }}</td>
+                    <td>{{ exam.duration }} mins</td>
+                    <td>
+                        <span class="status" [ngClass]="getStatusClass(exam.status)">
+                            {{ exam.status | titlecase }}
+                        </span>
+                    </td>
+                    <td>
+                        <button (click)="editExam(exam.id)" class="btn btn-edit">Edit</button>
+                        <button (click)="deleteExam(exam.id)" class="btn btn-delete">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- Show message when no exams exist -->
+        <div *ngIf="exams.length === 0" class="no-exams">
+            <p>No exams found. Create your first exam to get started!</p>
+        </div>
+    </div>
+</div>

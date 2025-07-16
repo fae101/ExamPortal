@@ -43,11 +43,6 @@
               <td>{{ student.enrolledDate | date: 'mediumDate' }}</td>
               <td>{{ student.totalExams }}</td>
               <td>{{ student.averageScore }}%</td>
-              <td>
-                <a routerLink="/teacher/student/{{ student.id }}" class="btn btn-secondary">
-                  View Profile
-                </a>
-              </td>
             </tr>
           }
         </tbody>
