@@ -1,338 +1,205 @@
 <div id="register">
-    <div class="floating-elements">
-        <div class="floating-element" style="left: 10%; animation-duration: 12s;"></div>
-        <div class="floating-element" style="left: 30%; animation-duration: 18s;"></div>
-        <div class="floating-element" style="left: 50%; animation-duration: 15s;"></div>
-        <div class="floating-element" style="left: 70%; animation-duration: 20s;"></div>
-        <div class="floating-element" style="left: 90%; animation-duration: 14s;"></div>
+  <div class="floating-elements">
+    <div class="floating-element" style="left: 10%; animation-duration: 12s;"></div>
+    <div class="floating-element" style="left: 30%; animation-duration: 18s;"></div>
+    <div class="floating-element" style="left: 50%; animation-duration: 15s;"></div>
+    <div class="floating-element" style="left: 70%; animation-duration: 20s;"></div>
+    <div class="floating-element" style="left: 90%; animation-duration: 14s;"></div>
+  </div>
+
+  <div class="form-container">
+    <div class="form-header">
+      <h1 class="form-title">Create New Account</h1>
+      <p class="form-subtitle">Enter your details to create a new account</p>
     </div>
 
-    <div class="form-container">
-        <div class="form-header">
-            <h1 class="form-title">Create New Account</h1>
-            <p class="form-subtitle">Enter your details to create a new account</p>
+    <form id="registrationForm" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+
+      <!-- Username -->
+      <div class="form-group">
+        <input type="text"
+               class="form-input"
+               id="userName"
+               placeholder="Username"
+               required
+               formControlName="UserName"
+               [class.error]="form.controls['UserName'].touched && form.controls['UserName'].invalid"
+               [class.success]="form.controls['UserName'].touched && form.controls['UserName'].valid" />
+        <span class="input-icon">👤</span>
+
+        <div id="userNameError"
+             class="error-message"
+             [class.show]="form.controls['UserName'].touched && form.controls['UserName'].invalid">
+          Username must be at least 3 characters and use letters, numbers, or underscores.
         </div>
 
-        <form id="registrationForm">
-            <div class="form-group">
-                <input type="text" class="form-input" id="userName" placeholder="Username" required>
-                <span class="input-icon">👤</span>
-                <div class="error-message" id="userNameError"></div>
-                <div class="success-message" id="userNameSuccess"></div>
-            </div>
-
-            <div class="form-group">
-                <input type="email" class="form-input" id="email" placeholder="Email Address" required>
-                <span class="input-icon">✉️</span>
-                <div class="error-message" id="emailError"></div>
-                <div class="success-message" id="emailSuccess"></div>
-            </div>
-
-            <div class="form-group">
-                <input type="password" class="form-input" id="password" placeholder="Password" required>
-                <span class="input-icon">🔒</span>
-                <div class="error-message" id="passwordError"></div>
-                <div class="password-strength" id="passwordStrength" style="display: none;">
-                    <div class="strength-bar">
-                        <div class="strength-fill" id="strengthFill"></div>
-                    </div>
-                    <div class="password-requirements">
-                        <div class="requirement" id="lengthReq">
-                            <span class="requirement-icon"></span>
-                            <span>At least 8 characters</span>
-                        </div>
-                        <div class="requirement" id="specialReq">
-                            <span class="requirement-icon"></span>
-                            <span>At least one special character (!&#64;#$%^&*)</span>
-                        </div>
-                        <div class="requirement" id="numberReq">
-                            <span class="requirement-icon"></span>
-                            <span>At least one number</span>
-                        </div>
-                        <div class="requirement" id="upperReq">
-                            <span class="requirement-icon"></span>
-                            <span>At least one uppercase letter</span>
-                        </div>
-                        <div class="requirement" id="lowerReq">
-                            <span class="requirement-icon"></span>
-                            <span>At least one lowercase letter</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <input type="text" class="form-input" id="fullName" placeholder="Full Name" required>
-                <span class="input-icon">📝</span>
-                <div class="error-message" id="fullNameError"></div>
-                <div class="success-message" id="fullNameSuccess"></div>
-            </div>
-
-            <div class="form-group">
-                <input type="date" class="form-input" id="createdAt" placeholder="Registration Date" required>
-                <span class="input-icon">📅</span>
-                <div class="error-message" id="createdAtError"></div>
-                <div class="success-message" id="createdAtSuccess"></div>
-            </div>
-
-            <div class="form-group">
-                <select class="form-input" id="role" required>
-                    <option value="" disabled selected>Select Role</option>
-                    <option value="admin">Admin</option>
-                    <option value="user">Student</option>
-                </select>
-                <span class="input-icon">👥</span>
-                <div class="error-message" id="roleError"></div>
-                <div class="success-message" id="roleSuccess"></div>
-            </div>
-
-            <button type="submit" class="submit-button">
-                Register Account
-            </button>
-        </form>
-
-        <div class="form-footer">
-            <p>Already have an account? <a href="#" onclick="showLoginMessage()">Sign In</a></p>
+        <div id="userNameSuccess"
+             class="success-message"
+             [class.show]="form.controls['UserName'].touched && form.controls['UserName'].valid">
+          Username looks great!
         </div>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <input type="email"
+               class="form-input"
+               id="email"
+               placeholder="Email Address"
+               required
+               formControlName="Email"
+               [class.error]="form.controls['Email'].touched && form.controls['Email'].invalid"
+               [class.success]="form.controls['Email'].touched && form.controls['Email'].valid" />
+        <span class="input-icon">✉️</span>
+
+        <div id="emailError"
+             class="error-message"
+             [class.show]="form.controls['Email'].touched && form.controls['Email'].invalid">
+          Please enter a valid email address.
+        </div>
+
+        <div id="emailSuccess"
+             class="success-message"
+             [class.show]="form.controls['Email'].touched && form.controls['Email'].valid">
+          Email looks good!
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <input type="password"
+               class="form-input"
+               id="password"
+               placeholder="Password"
+               required
+               formControlName="Password"
+               [class.error]="form.controls['Password'].touched && form.controls['Password'].invalid"
+               [class.success]="form.controls['Password'].touched && form.controls['Password'].valid" />
+        <span class="input-icon">🔒</span>
+
+        <div id="passwordError"
+             class="error-message"
+             [class.show]="form.controls['Password'].touched && form.controls['Password'].invalid">
+          Password is required.
+        </div>
+
+        <div class="password-strength"
+             id="passwordStrength"
+             [style.display]="form.controls['Password'].value ? 'block' : 'none'">
+          <div class="strength-bar">
+            <div class="strength-fill" [ngClass]="'strength-' + strengthClass" id="strengthFill"></div>
+          </div>
+
+          <div class="password-requirements">
+            <div class="requirement" [class.met]="requirements['length']" id="lengthReq">
+              <span class="requirement-icon"></span>
+              <span>At least 8 characters</span>
+            </div>
+            <div class="requirement" [class.met]="requirements['special']" id="specialReq">
+              <span class="requirement-icon"></span>
+              <span>At least one special character (!&#64;#$%^&*)</span>
+            </div>
+            <div class="requirement" [class.met]="requirements['number']" id="numberReq">
+              <span class="requirement-icon"></span>
+              <span>At least one number</span>
+            </div>
+            <div class="requirement" [class.met]="requirements['upper']" id="upperReq">
+              <span class="requirement-icon"></span>
+              <span>At least one uppercase letter</span>
+            </div>
+            <div class="requirement" [class.met]="requirements['lower']" id="lowerReq">
+              <span class="requirement-icon"></span>
+              <span>At least one lowercase letter</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Full Name -->
+      <div class="form-group">
+        <input type="text"
+               class="form-input"
+               id="fullName"
+               placeholder="Full Name"
+               required
+               formControlName="FullName"
+               [class.error]="form.controls['FullName'].touched && form.controls['FullName'].invalid"
+               [class.success]="form.controls['FullName'].touched && form.controls['FullName'].valid" />
+        <span class="input-icon">📝</span>
+
+        <div id="fullNameError"
+             class="error-message"
+             [class.show]="form.controls['FullName'].touched && form.controls['FullName'].invalid">
+          Full name must contain only letters and spaces.
+        </div>
+
+        <div id="fullNameSuccess"
+             class="success-message"
+             [class.show]="form.controls['FullName'].touched && form.controls['FullName'].valid">
+          Looks great!
+        </div>
+      </div>
+
+      <!-- Date -->
+      <div class="form-group">
+        <input type="date"
+               class="form-input"
+               id="createdAt"
+               placeholder="Registration Date"
+               required
+               formControlName="CreatedAt"
+               [class.error]="form.controls['CreatedAt'].touched && form.controls['CreatedAt'].invalid"
+               [class.success]="form.controls['CreatedAt'].touched && form.controls['CreatedAt'].valid" />
+        <span class="input-icon">📅</span>
+
+        <div id="createdAtError"
+             class="error-message"
+             [class.show]="form.controls['CreatedAt'].touched && form.controls['CreatedAt'].invalid">
+          Please select a valid date.
+        </div>
+
+        <div id="createdAtSuccess"
+             class="success-message"
+             [class.show]="form.controls['CreatedAt'].touched && form.controls['CreatedAt'].valid">
+          Date looks valid!
+        </div>
+      </div>
+
+      <!-- Role -->
+      <div class="form-group">
+        <select class="form-input"
+                id="role"
+                required
+                formControlName="Role"
+                [class.error]="form.controls['Role'].touched && form.controls['Role'].invalid"
+                [class.success]="form.controls['Role'].touched && form.controls['Role'].valid">
+          <option value="" disabled selected>Select Role</option>
+          <option value="admin">Admin</option>
+          <option value="student">Student</option>
+        </select>
+        <span class="input-icon">👥</span>
+
+        <div id="roleError"
+             class="error-message"
+             [class.show]="form.controls['Role'].touched && form.controls['Role'].invalid">
+          Please select a role.
+        </div>
+
+        <div id="roleSuccess"
+             class="success-message"
+             [class.show]="form.controls['Role'].touched && form.controls['Role'].valid">
+          Role selected!
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="submit-button">
+        Register Account
+      </button>
+    </form>
+
+    <div class="form-footer">
+      <p>Already have an account? <a routerLink="/login">Sign In</a></p>
     </div>
+  </div>
 </div>
-    <!-- <script>
-        // Validation functions
-        function validateUserName(username) {
-            if (username.length < 3) {
-                return { valid: false, message: 'Username must be more than 3 characters' };
-            }
-            if (!/^[a-zA-Z0-9_]+$/.test(username)) {
-                return { valid: false, message: 'Username can only contain letters, numbers, and underscores' };
-            }
-            return { valid: true, message: 'Username is valid' };
-        }
-
-        function validateEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                return { valid: false, message: 'Please enter a valid email address' };
-            }
-            return { valid: true, message: 'Email is valid' };
-        }
-
-        function validatePassword(password) {
-            const requirements = {
-                length: password.length >= 8,
-                special: /[!@#$%^&*(),.?":{}|<>]/.test(password),
-                number: /[0-9]/.test(password),
-                upper: /[A-Z]/.test(password),
-                lower: /[a-z]/.test(password)
-            };
-
-            const metRequirements = Object.values(requirements).filter(req => req).length;
-            const strength = metRequirements / 5;
-
-            let strengthText = '';
-            let strengthClass = '';
-
-            if (strength <= 0.4) {
-                strengthText = 'Weak';
-                strengthClass = 'strength-weak';
-            } else if (strength <= 0.6) {
-                strengthText = 'Fair';
-                strengthClass = 'strength-fair';
-            } else if (strength <= 0.8) {
-                strengthText = 'Good';
-                strengthClass = 'strength-good';
-            } else {
-                strengthText = 'Strong';
-                strengthClass = 'strength-strong';
-            }
-
-            return {
-                valid: strength === 1,
-                message: strength === 1 ? 'Password is strong' : `Password is ${strengthText}`,
-                requirements: requirements,
-                strength: strength,
-                strengthClass: strengthClass
-            };
-        }
-
-        function validateFullName(fullName) {
-            if (fullName.trim().length < 2) {
-                return { valid: false, message: 'Full name must be at least 2 characters' };
-            }
-            if (!/^[a-zA-Z\s]+$/.test(fullName)) {
-                return { valid: false, message: 'Full name can only contain letters and spaces' };
-            }
-            return { valid: true, message: 'Full name is valid' };
-        }
-
-        function validateDate(date) {
-            if (!date) {
-                return { valid: false, message: 'Please select a valid date' };
-            }
-            const selectedDate = new Date(date);
-            const today = new Date();
-            if (selectedDate > today) {
-                return { valid: false, message: 'Date cannot be in the future' };
-            }
-            return { valid: true, message: 'Date is valid' };
-        }
-
-        function validateRole(role) {
-            const validRoles = ['admin', 'user', 'moderator', 'editor'];
-            if (!validRoles.includes(role)) {
-                return { valid: false, message: 'Please select a valid role' };
-            }
-            return { valid: true, message: 'Role is valid' };
-        }
-
-        function showValidationMessage(fieldId, validation) {
-            const field = document.getElementById(fieldId);
-            const errorDiv = document.getElementById(fieldId + 'Error');
-            const successDiv = document.getElementById(fieldId + 'Success');
-
-            if (validation.valid) {
-                field.classList.remove('error');
-                field.classList.add('success');
-                errorDiv.classList.remove('show');
-                successDiv.textContent = validation.message;
-                successDiv.classList.add('show');
-            } else {
-                field.classList.remove('success');
-                field.classList.add('error');
-                successDiv.classList.remove('show');
-                errorDiv.textContent = validation.message;
-                errorDiv.classList.add('show');
-            }
-        }
-
-        function updatePasswordStrength(password) {
-            const strengthDiv = document.getElementById('passwordStrength');
-            const strengthFill = document.getElementById('strengthFill');
-            const requirements = ['lengthReq', 'specialReq', 'numberReq', 'upperReq', 'lowerReq'];
-            
-            if (password.length > 0) {
-                strengthDiv.style.display = 'block';
-                const validation = validatePassword(password);
-                
-                strengthFill.className = 'strength-fill ' + validation.strengthClass;
-                
-                // Update requirements
-                document.getElementById('lengthReq').classList.toggle('met', validation.requirements.length);
-                document.getElementById('specialReq').classList.toggle('met', validation.requirements.special);
-                document.getElementById('numberReq').classList.toggle('met', validation.requirements.number);
-                document.getElementById('upperReq').classList.toggle('met', validation.requirements.upper);
-                document.getElementById('lowerReq').classList.toggle('met', validation.requirements.lower);
-            } else {
-                strengthDiv.style.display = 'none';
-            }
-        }
-
-        // Real-time validation event listeners
-        document.getElementById('userName').addEventListener('input', function() {
-            const validation = validateUserName(this.value);
-            showValidationMessage('userName', validation);
-        });
-
-        document.getElementById('email').addEventListener('input', function() {
-            const validation = validateEmail(this.value);
-            showValidationMessage('email', validation);
-        });
-
-        document.getElementById('password').addEventListener('input', function() {
-            const validation = validatePassword(this.value);
-            showValidationMessage('password', validation);
-            updatePasswordStrength(this.value);
-        });
-
-        document.getElementById('fullName').addEventListener('input', function() {
-            const validation = validateFullName(this.value);
-            showValidationMessage('fullName', validation);
-        });
-
-        document.getElementById('createdAt').addEventListener('change', function() {
-            const validation = validateDate(this.value);
-            showValidationMessage('createdAt', validation);
-        });
-
-        document.getElementById('role').addEventListener('change', function() {
-            const validation = validateRole(this.value);
-            showValidationMessage('role', validation);
-        });
-
-        // Form submission with comprehensive validation
-        document.getElementById('registrationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = {
-                userName: document.getElementById('userName').value,
-                email: document.getElementById('email').value,
-                password: document.getElementById('password').value,
-                fullName: document.getElementById('fullName').value,
-                createdAt: document.getElementById('createdAt').value,
-                role: document.getElementById('role').value
-            };
-
-            const validations = {
-                userName: validateUserName(formData.userName),
-                email: validateEmail(formData.email),
-                password: validatePassword(formData.password),
-                fullName: validateFullName(formData.fullName),
-                createdAt: validateDate(formData.createdAt),
-                role: validateRole(formData.role)
-            };
-
-            // Show validation messages
-            Object.keys(validations).forEach(field => {
-                showValidationMessage(field, validations[field]);
-            });
-
-            // Check if all validations pass
-            const allValid = Object.values(validations).every(validation => validation.valid);
-
-            if (allValid) {
-                showSuccessMessage();
-                console.log('Sign Up Successfully!!!', formData);
-                
-                // Simulate form submission
-                setTimeout(() => {
-                    alert('Registration Successful!\nSign Up Successfully!\n\nForm Data:\n' + JSON.stringify(formData, null, 2));
-                }, 1000);
-            } else {
-                const button = document.querySelector('.submit-button');
-                button.style.background = 'linear-gradient(135deg, #f56565, #ed8936)';
-                button.textContent = 'Please fix the errors';
-                
-                setTimeout(() => {
-                    button.style.background = 'linear-gradient(135deg, #8b5cf6, #06b6d4)';
-                    button.textContent = 'Register Account';
-                }, 2000);
-            }
-        });
-
-        function showSuccessMessage() {
-            const button = document.querySelector('.submit-button');
-            const originalText = button.textContent;
-            
-            button.textContent = 'Registration Successful!';
-            button.style.background = 'linear-gradient(135deg, #10b981, #06b6d4)';
-            
-            setTimeout(() => {
-                button.textContent = originalText;
-                button.style.background = 'linear-gradient(135deg, #8b5cf6, #06b6d4)';
-            }, 2000);
-        }
-
-        function showLoginMessage() {
-            alert('You will be redirected to the login page');
-        }
-
-        // Add floating animation on form focus
-        document.querySelectorAll('.form-input').forEach(input => {
-            input.addEventListener('focus', function() {
-                this.parentElement.style.transform = 'translateY(-2px)';
-            });
-            
-            input.addEventListener('blur', function() {
-                this.parentElement.style.transform = 'translateY(0)';
-            });
-        });
-    </script> -->

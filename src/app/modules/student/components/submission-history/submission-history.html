@@ -11,7 +11,7 @@
       <div class="summary-icon">📊</div>
       <div class="summary-content">
         <h3>Total Exams</h3>
-        <p class="summary-value">3</p>
+        <p class="summary-value">{{ submissions.length }}</p>
       </div>
     </div>
 
@@ -19,7 +19,7 @@
       <div class="summary-icon">✅</div>
       <div class="summary-content">
         <h3>Completed</h3>
-        <p class="summary-value">2</p>
+        <p class="summary-value">{{ gradedCount }}</p>
       </div>
     </div>
 
@@ -27,7 +27,7 @@
       <div class="summary-icon">⏳</div>
       <div class="summary-content">
         <h3>Pending</h3>
-        <p class="summary-value">1</p>
+        <p class="summary-value">{{ submissions.length - gradedCount }}</p>
       </div>
     </div>
 
@@ -35,7 +35,7 @@
       <div class="summary-icon">🎯</div>
       <div class="summary-content">
         <h3>Average Score</h3>
-        <p class="summary-value">76%</p>
+        <p class="summary-value">{{ averageScore }}%</p>
       </div>
     </div>
   </div>
@@ -69,70 +69,75 @@
   </div>
 
   <!-- Loading State -->
-  <div class="loading-state">
-    <div class="spinner"></div>
-    <p>Loading submission history...</p>
-  </div>
+  @if (loading) {
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading submission history...</p>
+    </div>
+  }
 
   <!-- Submissions List -->
-  <div class="submissions-list">
-    <div class="submission-card">
-      <div class="submission-header">
-        <div class="exam-info">
-          <h3 class="exam-title">Mathematics Final Exam</h3>
-          <p class="submission-date">Submitted: Dec 1, 2024, 11:12 AM</p>
-        </div>
-        <div class="submission-status">
-          <span class="status-badge status-graded">Graded</span>
-        </div>
-      </div>
-
-      <div class="submission-body">
-        <div class="score-section">
-          <div class="score-display">
-            <div class="score-circle grade-B">
-              <span class="score-percentage">76%</span>
-              <span class="score-grade">B</span>
+  @if (submissions.length > 0) {
+    <div class="submissions-list">
+      @for (sub of submissions; track sub.id) {
+        <div class="submission-card">
+          <div class="submission-header">
+            <div class="exam-info">
+              <h3 class="exam-title">Exam ID: {{ sub.examId }}</h3>
+              <p class="submission-date">Submitted: {{ sub.submittedAt | date:'medium' }}</p>
+            </div>
+            <div class="submission-status">
+              <span class="status-badge status-graded">Graded</span>
             </div>
           </div>
 
-          <div class="score-details">
-            <div class="detail-row">
-              <span class="detail-label">Score:</span>
-              <span class="detail-value">76/100</span>
+          <div class="submission-body">
+            <div class="score-section">
+              <div class="score-display">
+                <div class="score-circle grade-{{ sub.grade }}">
+                  <span class="score-percentage">
+                    {{ sub.score * 100 / sub.totalPoints | number:'1.0-0' }}%
+                  </span>
+                  <span class="score-grade">{{ sub.grade }}</span>
+                </div>
+              </div>
+
+              <div class="score-details">
+                <div class="detail-row">
+                  <span class="detail-label">Score:</span>
+                  <span class="detail-value">{{ sub.score }}/{{ sub.totalPoints }}</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Grade:</span>
+                  <span class="detail-value">{{ sub.grade }}</span>
+                </div>
+              </div>
             </div>
-            <div class="detail-row">
-              <span class="detail-label">Correct:</span>
-              <span class="detail-value">19/25</span>
+
+            <div class="progress-section">
+              <div class="progress-bar">
+                <div class="progress-fill grade-{{ sub.grade }}"
+                     [style.width.%]="(sub.score / sub.totalPoints) * 100"></div>
+              </div>
+              <div class="progress-stats">
+                <span>{{ sub.score }} correct answers</span>
+                <span>{{ sub.totalPoints - sub.score }} incorrect</span>
+              </div>
             </div>
-            <div class="detail-row">
-              <span class="detail-label">Time:</span>
-              <span class="detail-value">1h 28m / 2h 0m</span>
-            </div>
+          </div>
+
+          <div class="submission-actions">
+            <button class="btn btn-primary">View Details</button>
           </div>
         </div>
-
-        <div class="progress-section">
-          <div class="progress-bar">
-            <div class="progress-fill grade-B" style="width: 76%"></div>
-          </div>
-          <div class="progress-stats">
-            <span>19 correct answers</span>
-            <span>6 incorrect</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="submission-actions">
-        <button class="btn btn-primary">View Details</button>
-      </div>
+      }
     </div>
-  </div>
-
-  <!-- Empty State -->
-  <div class="empty-state">
-    <div class="empty-icon">📋</div>
-    <h3>No Submissions Found</h3>
-    <p>You haven't submitted any exams yet.</p>
-  </div>
+  } @else {
+    <!-- Empty State -->
+    <div class="empty-state">
+      <div class="empty-icon">📋</div>
+      <h3>No Submissions Found</h3>
+      <p>You haven't submitted any exams yet.</p>
+    </div>
+  }
 </div>

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ExamPortalApis.Controllers
 {
-  [Authorize(Roles = "Teacher")]
+  [Authorize]
   [Route("api/[controller]")]
   [ApiController]
   public class TeacherController : ControllerBase
@@ -23,7 +23,7 @@ namespace ExamPortalApis.Controllers
     public IActionResult GetAllStudents()
     {
       var students = db.Users
-          .Where(u => u.Role == "Student") // or role ID / enum
+          .Where(u => u.Role == "student") // or role ID / enum
           .Select(u => new {
             u.Id,
             u.MyUserName,

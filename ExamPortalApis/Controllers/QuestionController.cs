@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ExamPortal.Controllers
 {
-  [Authorize(Roles = "Teacher")]
+  [Authorize]
   [Route("api/[controller]")]
   [ApiController]
   public class QuestionController : ControllerBase

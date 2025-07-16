@@ -1,17 +1,18 @@
-import { SubmissionHistory } from './submission-history';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-describe('SubmissionHistory', () => {
-  let component: SubmissionHistory;
-  let fixture: ComponentFixture<SubmissionHistory>;
+import { StudentDashboard } from './student-dashboard';
+
+describe('StudentDashboard', () => {
+  let component: StudentDashboard;
+  let fixture: ComponentFixture<StudentDashboard>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SubmissionHistory]
+      imports: [StudentDashboard]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SubmissionHistory);
+    fixture = TestBed.createComponent(StudentDashboard);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,118 @@
+<!-- Student Dashboard -->
+<div class="student-dashboard">
+  <header class="dashboard-header">
+    <div class="header-content">
+      <h1 class="dashboard-title">Student Dashboard</h1>
+      <p class="dashboard-subtitle">Welcome back! Ready to take your exams?</p>
+    </div>
+  </header>
+
+  <main class="dashboard-main">
+    <!-- Quick Stats -->
+    <section class="stats-section">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">📊</div>
+          <div class="stat-content">
+            <h3 class="stat-number">{{ stats.available }}</h3>
+            <p class="stat-label">Available Exams</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">✅</div>
+          <div class="stat-content">
+            <h3 class="stat-number">{{ stats.completed }}</h3>
+            <p class="stat-label">Completed</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⏱️</div>
+          <div class="stat-content">
+            <h3 class="stat-number">{{ stats.pending }}</h3>
+            <p class="stat-label">Pending</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🏆</div>
+          <div class="stat-content">
+            <h3 class="stat-number">{{ stats.averageScore }}%</h3>
+            <p class="stat-label">Avg. Score</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Cards -->
+    <section class="navigation-section">
+      <div class="nav-grid">
+        <div class="nav-card primary-card">
+          <div class="nav-card-header">
+            <div class="nav-icon">📝</div>
+            <h2 class="nav-title">Take Exams</h2>
+          </div>
+          <p class="nav-description">
+            Browse and take available exams. View exam details, duration, and questions.
+          </p>
+          <div class="nav-actions">
+            <button class="nav-btn primary-btn" routerLink="exams">
+              View Exams
+              <span class="btn-arrow">→</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="nav-card secondary-card">
+          <div class="nav-card-header">
+            <div class="nav-icon">📈</div>
+            <h2 class="nav-title">View Results</h2>
+          </div>
+          <p class="nav-description">
+            Check your exam results, scores, and detailed performance breakdowns.
+          </p>
+          <div class="nav-actions">
+            <button class="nav-btn secondary-btn" routerLink="results">
+              View Results
+              <span class="btn-arrow">→</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="nav-card tertiary-card">
+          <div class="nav-card-header">
+            <div class="nav-icon">📋</div>
+            <h2 class="nav-title">Submission History</h2>
+          </div>
+          <p class="nav-description">
+            Review your past submissions and track your exam completion progress.
+          </p>
+          <div class="nav-actions">
+            <button class="nav-btn tertiary-btn" routerLink="submissions">
+              View History
+              <span class="btn-arrow">→</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent Activity -->
+    <section class="activity-section">
+      <div class="activity-header">
+        <h2 class="activity-title">Recent Activity</h2>
+        <button class="activity-more">View All</button>
+      </div>
+      <div class="activity-list">
+        <div class="activity-item" *ngFor="let activity of recentActivities">
+          <div class="activity-icon {{ activity.type }}">{{ activity.icon }}</div>
+          <div class="activity-content">
+            <h3 class="activity-text">{{ activity.message }}</h3>
+            <p class="activity-time">{{ activity.timestamp }}</p>
+          </div>
+          <div *ngIf="activity.score" class="activity-score {{ activity.type }}">{{ activity.score }}</div>
+          <div *ngIf="activity.badge" class="activity-badge {{ activity.type }}">{{ activity.badge }}</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+</div>
