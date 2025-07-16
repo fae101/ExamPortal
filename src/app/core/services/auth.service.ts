@@ -24,7 +24,7 @@ export interface UserResponseDTO {
   password: string;
   role: string;
   token: string;
-  userId?: string; // Add userId to response
+  userId?: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -38,7 +38,6 @@ export class AuthService {
   register(data: RegisterDTO): Observable<UserResponseDTO> {
     return this.http.post<UserResponseDTO>(`${this.apiUrl}/register`, data).pipe(
       tap(response => {
-        // Store user data after successful registration
         this.setUser(response);
       }),
       catchError(err => {
@@ -52,7 +51,6 @@ export class AuthService {
   login(data: LoginDTO): Observable<UserResponseDTO> {
     return this.http.post<UserResponseDTO>(`${this.apiUrl}/login`, data).pipe(
       tap(response => {
-        // Store user data after successful login
         this.setUser(response);
       }),
       catchError(err => {
@@ -73,7 +71,6 @@ export class AuthService {
     localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('token', user.token);
     
-    // Extract and store userId if available
     if (user.userId) {
       localStorage.setItem('userId', user.userId);
     }
