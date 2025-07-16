@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import {  NgClass, TitleCasePipe } from '@angular/common';
-import { StudentService, Result} from '../../student.service';
+import { NgClass, TitleCasePipe } from '@angular/common';
+import { StudentService, Result } from '../../student.service';
 
 @Component({
   selector: 'app-exam-results',
   standalone: true,
-  imports: [ NgClass, TitleCasePipe, RouterLink],
+  imports: [NgClass, TitleCasePipe, RouterLink],
   templateUrl: './exam-results.html',
   styleUrls: ['./exam-results.css']
 })
@@ -34,6 +34,7 @@ export class ExamResults implements OnInit {
       error: (err) => {
         console.error('Result loading error:', err);
         this.loading = false;
+        alert('Failed to load exam results');
       }
     });
   }

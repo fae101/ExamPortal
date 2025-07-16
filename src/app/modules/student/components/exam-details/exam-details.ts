@@ -17,7 +17,8 @@ export class ExamDetails implements OnInit {
   examStarted = false;
   examCompleted = false;
   currentQuestionIndex = 0;
-  userAnswers: { [key: number]: string } = {};
+  userAnswers: { [key: string]: number } = {};
+  timer: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,6 +29,12 @@ export class ExamDetails implements OnInit {
   ngOnInit(): void {
     this.examId = this.route.snapshot.paramMap.get('id')!;
     this.loadExamDetails();
+  }
+
+  ngOnDestroy(): void {
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
   }
 
   loadExamDetails(): void {
@@ -41,6 +48,7 @@ export class ExamDetails implements OnInit {
       error: (err) => {
         console.error('Failed to load exam:', err);
         this.loading = false;
+        alert('Failed to load exam details');
       }
     });
   }
@@ -51,17 +59,17 @@ export class ExamDetails implements OnInit {
   }
 
   startTimer(): void {
-    const timer = setInterval(() => {
+    this.timer = setInterval(() => {
       this.timeRemaining--;
       if (this.timeRemaining <= 0) {
-        clearInterval(timer);
+        clearInterval(this.timer);
         this.submitExam();
       }
     }, 1000);
   }
 
-  selectAnswer(questionId: number, answer: string): void {
-    this.userAnswers[questionId] = answer;
+  selectAnswer(questionId: string, answerIndex: number): void {
+    this.userAnswers[questionId] = answerIndex;
   }
 
   previousQuestion(): void {
@@ -81,17 +89,32 @@ export class ExamDetails implements OnInit {
   }
 
   submitExam(): void {
-    this.examCompleted = true;
- const payload: SubmissionDTO = {
-  userId: 'student-id', // replace with actual value
-  answers: Object.fromEntries(
-    Object.entries(this.userAnswers).map(([key, value]) => [key.toString(), parseInt(value)])
-  )
-};
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
+
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
+      alert('User not found. Please login again.');
+      return;
+    }
+
+    const payload: SubmissionDTO = {
+      userId: userId,
+      examId: this.examId,
+      answers: this.userAnswers
+    };
 
     this.studentService.submitAnswers(this.examId, payload).subscribe({
-      next: () => console.log('Submitted successfully'),
-      error: (err) => console.error('Submission failed:', err)
+      next: (response) => {
+        console.log('Submitted successfully:', response);
+        this.examCompleted = true;
+        alert('Exam submitted successfully!');
+      },
+      error: (err) => {
+        console.error('Submission failed:', err);
+        alert('Failed to submit exam. Please try again.');
+      }
     });
   }
 
@@ -105,7 +128,7 @@ export class ExamDetails implements OnInit {
     return Object.keys(this.userAnswers).length;
   }
 
-  isQuestionAnswered(id: number): boolean {
+  isQuestionAnswered(id: string): boolean {
     return id in this.userAnswers;
   }
 }

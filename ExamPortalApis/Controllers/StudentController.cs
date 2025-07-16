@@ -3,6 +3,7 @@ using ExamPortalApis.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace ExamPortalApis.Controllers
 {
@@ -69,11 +70,16 @@ namespace ExamPortalApis.Controllers
       if (!examExists)
         return NotFound(new { Message = "Exam not found or not published." });
 
+      // Get current user ID from JWT token
+      var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      if (!Guid.TryParse(userIdClaim, out Guid currentUserId))
+        return Unauthorized(new { Message = "Invalid user token." });
+
       var newSubmission = new Submission
       {
         Id = Guid.NewGuid(),
         ExamId = id,
-        StudentId = submission.UserId,
+        StudentId = currentUserId, // Use authenticated user ID
         Answers = submission.Answers
           .Select(a => new Answer
           {

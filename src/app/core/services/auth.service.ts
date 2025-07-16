@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject, catchError, throwError } from 'rxjs';
+import { Observable, BehaviorSubject, catchError, throwError, tap } from 'rxjs';
 
 export interface RegisterDTO {
-  UserName: string;
+  Username: string;
   Email: string;
   Password: string;
   FullName: string;
@@ -13,7 +13,7 @@ export interface RegisterDTO {
 }
 
 export interface LoginDTO {
-  UserName: string;
+  Username: string;
   Password: string;
 }
 
@@ -24,12 +24,12 @@ export interface UserResponseDTO {
   password: string;
   role: string;
   token: string;
+  userId?: string; // Add userId to response
 }
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private apiUrl = 'http://localhost:5240/api/auth';
-
   private userSubject = new BehaviorSubject<UserResponseDTO | null>(this.getStoredUser());
 
   constructor(private http: HttpClient) {}
@@ -37,6 +37,10 @@ export class AuthService {
   /** Register new user */
   register(data: RegisterDTO): Observable<UserResponseDTO> {
     return this.http.post<UserResponseDTO>(`${this.apiUrl}/register`, data).pipe(
+      tap(response => {
+        // Store user data after successful registration
+        this.setUser(response);
+      }),
       catchError(err => {
         console.error('Registration error:', err);
         return throwError(() => new Error(err.error?.message || 'Registration failed'));
@@ -47,6 +51,10 @@ export class AuthService {
   /** Login user */
   login(data: LoginDTO): Observable<UserResponseDTO> {
     return this.http.post<UserResponseDTO>(`${this.apiUrl}/login`, data).pipe(
+      tap(response => {
+        // Store user data after successful login
+        this.setUser(response);
+      }),
       catchError(err => {
         console.error('Login error:', err);
         return throwError(() => new Error(err.error?.message || 'Login failed'));
@@ -64,13 +72,31 @@ export class AuthService {
     this.userSubject.next(user);
     localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('token', user.token);
+    
+    // Extract and store userId if available
+    if (user.userId) {
+      localStorage.setItem('userId', user.userId);
+    }
   }
 
   /** Logout and clear session */
   logout(): void {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
+    localStorage.removeItem('userId');
     this.userSubject.next(null);
+  }
+
+  /** Check if user is authenticated */
+  isAuthenticated(): boolean {
+    const token = localStorage.getItem('token');
+    return !!token;
+  }
+
+  /** Get user role */
+  getUserRole(): string | null {
+    const user = this.getCurrentUser();
+    return user?.role || null;
   }
 
   /** Helper: Load user from localStorage on init */
@@ -78,6 +104,4 @@ export class AuthService {
     const raw = localStorage.getItem('user');
     return raw ? JSON.parse(raw) : null;
   }
-  
-
 }

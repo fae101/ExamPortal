@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -19,11 +18,10 @@ export class Login {
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    private router: Router,
-    
+    private router: Router
   ) {
     this.form = this.fb.group({
-      UserName: [
+      Username: [
         '',
         [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9_]+$/)]
       ],
@@ -36,35 +34,35 @@ export class Login {
       this.loading = true;
       const payload = this.form.value;
 
-     this.auth.login(payload).subscribe({
-      
- next: (res: any) => {
-  const userId = res.id;
-  const role = res.role;
+      this.auth.login(payload).subscribe({
+        next: (res: UserResponseDTO) => {
+          // Store additional user info
+          localStorage.setItem('userId', res.userId || 'temp-user-id');
+          localStorage.setItem('token', res.token);
+          localStorage.setItem('user', JSON.stringify(res));
+          
+          alert('Welcome Back, ' + res.user_name + ' 🎉');
 
-  localStorage.setItem('userId', res.userId);
-  localStorage.setItem('token', res.token);
-  localStorage.setItem('user', JSON.stringify(res));
-  
-  alert('Welcome Back, ' + res.user_name + ' 🎉');
-
-  switch (role) {
-    case 'student':
-      this.router.navigate(['/student']);
-      break;
-    case 'teacher':
-    case 'admin':
-      this.router.navigate(['/dashboard']);
-      break;
-    default:
-      this.router.navigate(['/']);
-      break;}
-
-  },
-  error: (err) => {
-    alert('Login failed: ' + err.message);
-  }
-});
+          // Route based on role
+          switch (res.role?.toLowerCase()) {
+            case 'student':
+              this.router.navigate(['/student']);
+              break;
+            case 'teacher':
+            case 'admin':
+              this.router.navigate(['/teacher/dashboard']);
+              break;
+            default:
+              this.router.navigate(['/']);
+              break;
+          }
+          this.loading = false;
+        },
+        error: (err) => {
+          alert('Login failed: ' + err.message);
+          this.loading = false;
+        }
+      });
     } else {
       Object.values(this.form.controls).forEach(c => c.markAsTouched());
     }

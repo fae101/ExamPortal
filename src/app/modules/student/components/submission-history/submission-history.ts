@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe, DecimalPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { StudentService } from '../../student.service';
-import { AuthService } from '../../../../core/services/auth.service';
+import { StudentService, SubmissionHistory as SubmissionHistoryType } from '../../student.service';
 
 interface Submission {
   id: string;
@@ -26,17 +25,18 @@ export class SubmissionHistory implements OnInit {
   gradedCount = 0;
   averageScore = 0;
 
-  constructor(
-    private studentService: StudentService,
-    private authService: AuthService
-  ) {}
+  constructor(private studentService: StudentService) {}
 
   ngOnInit(): void {
-    const userId = localStorage.getItem('userId'); // non-invasive access
-    if (!userId) return;
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
+      console.error('User ID not found');
+      this.loading = false;
+      return;
+    }
 
     this.studentService.getSubmissionHistory(userId).subscribe({
-      next: (data) => {
+      next: (data: SubmissionHistoryType[]) => {
         this.submissions = data.map(sub => ({
           id: sub.id,
           examId: sub.examId,

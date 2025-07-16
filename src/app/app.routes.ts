@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { RouterModule,Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { CreateExam } from './modules/teacher/pages/create-exam/create-exam';
 import { Home } from './modules/public/home/home';
 import { Register } from './modules/public/register/register/register';
@@ -12,22 +11,19 @@ import { ExamResults } from './modules/student/components/exam-results/exam-resu
 import { StudentDashboard } from './modules/student/student-dashboard/student-dashboard';
 
 export const routes: Routes = [
-
-{path: '', component: Home },
-{path:'teacher/create-exam',component:CreateExam},
-{path:'register', component:Register},
-{path:'login',component:Login},
-{
-  path: 'student',
-  component: Student, //  this has router-outlet only
-  children: [
-    { path: '', component: StudentDashboard }, //  homepage with stats and nav cards
-    { path: 'exams', component: ExamList },
-    { path: 'exam/:id', component: ExamDetails },
-    { path: 'submissions', component: SubmissionHistory },
-    { path: 'results', component: ExamResults }
-  ]
-  },
-
-
+  { path: '', component: Home },
+  { path: 'teacher/create-exam', component: CreateExam },
+  { path: 'register', component: Register },
+  { path: 'login', component: Login },
+  {
+    path: 'student',
+    component: Student,
+    children: [
+      { path: '', component: StudentDashboard },
+      { path: 'exams', component: ExamList },
+      { path: 'exam/:id', component: ExamDetails },
+      { path: 'submissions', component: SubmissionHistory },
+      { path: 'results/:id', component: ExamResults }
+    ]
+  }
 ];
