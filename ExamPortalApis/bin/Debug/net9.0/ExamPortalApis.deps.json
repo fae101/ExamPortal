@@ -12,6 +12,7 @@
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "9.0.7",
           "Microsoft.AspNetCore.OpenApi": "9.0.4",
           "Microsoft.EntityFrameworkCore": "9.0.7",
+          "Microsoft.EntityFrameworkCore.InMemory": "9.0.7",
           "Microsoft.EntityFrameworkCore.SqlServer": "9.0.7",
           "Microsoft.EntityFrameworkCore.Tools": "9.0.7",
           "Swashbuckle.AspNetCore": "9.0.3"
@@ -519,6 +520,19 @@
           }
         }
       },
+      "Microsoft.EntityFrameworkCore.InMemory/9.0.7": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "9.0.7",
+          "Microsoft.Extensions.Caching.Memory": "9.0.7",
+          "Microsoft.Extensions.Logging": "9.0.7"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.EntityFrameworkCore.InMemory.dll": {
+            "assemblyVersion": "9.0.7.0",
+            "fileVersion": "9.0.725.31607"
+          }
+        }
+      },
       "Microsoft.EntityFrameworkCore.Relational/9.0.7": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "9.0.7",
@@ -982,7 +996,14 @@
           }
         }
       },
-      "System.Formats.Asn1/9.0.7": {},
+      "System.Formats.Asn1/9.0.7": {
+        "runtime": {
+          "lib/net9.0/System.Formats.Asn1.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.725.31616"
+          }
+        }
+      },
       "System.IdentityModel.Tokens.Jwt/8.0.1": {
         "dependencies": {
           "Microsoft.IdentityModel.JsonWebTokens": "8.0.1",
@@ -1080,7 +1101,14 @@
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
         }
       },
-      "System.Text.Json/9.0.7": {},
+      "System.Text.Json/9.0.7": {
+        "runtime": {
+          "lib/net9.0/System.Text.Json.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.725.31616"
+          }
+        }
+      },
       "System.Threading.Channels/7.0.0": {},
       "System.Threading.Tasks.Extensions/4.5.4": {},
       "System.Windows.Extensions/6.0.0": {
@@ -1270,6 +1298,13 @@
       "sha512": "sha512-zvZ2/bRwdPrBfQ2fRd2IQL6icyIOtosZSz2QpXtsn7M+c6e4GvpNfpSxBprLfoKhH6NeAFNV9ool0Vp/1DJd/A==",
       "path": "microsoft.entityframeworkcore.design/9.0.7",
       "hashPath": "microsoft.entityframeworkcore.design.9.0.7.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.InMemory/9.0.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/EQbD4/m83r3AW4z69SIwjRvEPFJchhCIQ80DbUiw3H6T2fXEVCf6YjbBlLE6Q/syHYu2JYBScxyAQ4/q8J2xA==",
+      "path": "microsoft.entityframeworkcore.inmemory/9.0.7",
+      "hashPath": "microsoft.entityframeworkcore.inmemory.9.0.7.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore.Relational/9.0.7": {
       "type": "package",

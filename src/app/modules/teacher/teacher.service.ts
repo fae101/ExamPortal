@@ -10,15 +10,28 @@ export interface Student {
   totalExams: number;
   averageScore: number;
 }
+export interface Exam {
+  id: string;
+  examName: string;
+  subject: string;
+  date: string;
+  duration: number;
+  status: 'active' | 'draft' | 'completed' | 'expired';
+  // Add other properties based on your backend model
+}
 
 @Injectable({
   providedIn: 'root' // or scoped within the TeacherModule if preferred
 })
 export class TeacherService {
-  private baseUrl = '/api/teacher'; // update this as needed
+  private baseUrl = 'http://localhost:5240/api'; // update this as needed
 
   constructor(private http: HttpClient) {}
 
+  getAllExams(): Observable<Exam[]> {
+    return this.http.get<Exam[]>(`${this.baseUrl}/exam`);
+  }
+  
   // 🔍 Fetch all enrolled students
   getStudents(): Observable<Student[]> {
     return this.http.get<Student[]>(`${this.baseUrl}/students`);
