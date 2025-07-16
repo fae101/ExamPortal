@@ -24,7 +24,6 @@
             <li>{{ instruction }}</li>
         }
         </ul>
-
       </div>
 
       <div class="action-buttons">
@@ -55,8 +54,7 @@
                 [class.answered]="isQuestionAnswered(question.id)">
                 {{ $index + 1 }}
             </button>
-            }
-
+          }
         </div>
         <p>{{ getAnsweredCount() }} / {{ exam.questions.length }} answered</p>
       </div>
@@ -71,12 +69,11 @@
                 <input
                 type="radio"
                 name="question_{{ current.id }}"
-                [checked]="userAnswers[current.id] === $index.toString()"
-                (change)="selectAnswer(current.id, $index.toString())" />
+                [checked]="userAnswers[current.id] === $index"
+                (change)="selectAnswer(current.id, $index)" />
                 {{ option }}
             </label>
-            }
-
+          }
         </div>
       </div>
 
@@ -103,3 +100,102 @@
   }
 
 </div>
+
+
+<!-- <div class="exam-details-container">
+
+  @if (loading) {
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading exam details...</p>
+    </div>
+  }
+
+  @if (!loading && !examStarted && !examCompleted) {
+    <div class="exam-instructions">
+      <h1 class="exam-title">{{ exam.title }}</h1>
+      <div class="exam-meta">
+        <span>Duration: {{ exam.duration }} mins</span>
+        <span>Questions: {{ exam.questions.length }}</span>
+      </div>
+
+      <div class="instructions-box">
+        <h3>Instructions</h3>
+        <ul>
+        @for (instruction of exam.instructions; track $index) {
+            <li>{{ instruction }}</li>
+        }
+        </ul>
+
+      </div>
+
+      <div class="action-buttons">
+        <button class="btn btn-primary" (click)="startExam()">Start Exam</button>
+        <a routerLink="/student/exams" class="btn btn-secondary">Cancel</a>
+      </div>
+    </div>
+  }
+
+  @if (examStarted && !examCompleted) {
+    <div class="exam-interface">
+
+      <div class="exam-header">
+        <h2>{{ exam.title }}</h2>
+        <span class="exam-timer">⏱ {{ formatTime(timeRemaining) }}</span>
+      </div>
+
+      <div class="question-nav">
+        <h4>Question Navigation</h4>
+        <div class="nav-buttons">
+          @for (question of exam.questions; track question.id) {
+            <button
+                (click)="goToQuestion($index)"
+                [class.active]="currentQuestionIndex === $index"
+                [class.answered]="isQuestionAnswered(question.id)">
+                {{ $index + 1 }}
+            </button>
+            }
+
+        </div>
+        <p>{{ getAnsweredCount() }} / {{ exam.questions.length }} answered</p>
+      </div>
+
+      @let current = exam.questions[currentQuestionIndex];
+      <div class="question-card">
+        <h3>{{ current.question }}</h3>
+        <div class="question-options">
+          @for (option of current.options!; track $index) {
+            <label>
+                <input
+                type="radio"
+                name="question_{{ current.id }}"
+                [checked]="userAnswers[current.id] === $index.toString()"
+                (change)="selectAnswer(current.id, $index.toString())" />
+                {{ option }}
+            </label>
+            }
+
+        </div>
+      </div>
+
+      <div class="exam-actions">
+        <button class="btn btn-secondary" (click)="previousQuestion()" [disabled]="currentQuestionIndex === 0">
+          Previous
+        </button>
+        <button class="btn btn-secondary" (click)="nextQuestion()" [disabled]="currentQuestionIndex === exam.questions.length - 1">
+          Next
+        </button>
+        <button class="btn btn-success" (click)="submitExam()">Submit</button>
+      </div>
+    </div>
+  }
+
+  @if (examCompleted) {
+    <div class="exam-completed-message">
+      <h2>✅ Exam Submitted</h2>
+      <p>Your answers have been submitted successfully.</p>
+      <a routerLink="/student/submissions" class="btn btn-primary">View Submission History</a>
+    </div>
+  }
+
+</div> -->

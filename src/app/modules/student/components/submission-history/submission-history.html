@@ -1,143 +1,37 @@
 <div class="submission-history-container">
-  <!-- Page Header -->
-  <div class="page-header">
-    <h1 class="page-title">Submission History</h1>
-    <p class="page-subtitle">View your exam results and performance history</p>
-  </div>
 
-  <!-- Performance Summary -->
-  <div class="performance-summary">
-    <div class="summary-card">
-      <div class="summary-icon">📊</div>
-      <div class="summary-content">
-        <h3>Total Exams</h3>
-        <p class="summary-value">{{ submissions.length }}</p>
-      </div>
-    </div>
+  <h1 class="page-title">Your Submissions</h1>
 
-    <div class="summary-card">
-      <div class="summary-icon">✅</div>
-      <div class="summary-content">
-        <h3>Completed</h3>
-        <p class="summary-value">{{ gradedCount }}</p>
-      </div>
-    </div>
-
-    <div class="summary-card">
-      <div class="summary-icon">⏳</div>
-      <div class="summary-content">
-        <h3>Pending</h3>
-        <p class="summary-value">{{ submissions.length - gradedCount }}</p>
-      </div>
-    </div>
-
-    <div class="summary-card">
-      <div class="summary-icon">🎯</div>
-      <div class="summary-content">
-        <h3>Average Score</h3>
-        <p class="summary-value">{{ averageScore }}%</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Filters and Controls -->
-  <div class="controls-section">
-    <div class="filters">
-      <div class="filter-group">
-        <label for="status-filter">Filter by Status:</label>
-        <select id="status-filter" class="filter-select">
-          <option value="all">All Submissions</option>
-          <option value="graded">Graded</option>
-          <option value="pending">Pending</option>
-          <option value="reviewed">Reviewed</option>
-        </select>
-      </div>
-
-      <div class="filter-group">
-        <label for="sort-select">Sort by:</label>
-        <select id="sort-select" class="filter-select">
-          <option value="date">Date Submitted</option>
-          <option value="score">Score</option>
-          <option value="title">Exam Title</option>
-        </select>
-      </div>
-
-      <button class="sort-order-btn" title="Sort Descending">
-        <span class="sort-icon">↓</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- Loading State -->
-  @if (loading) {
-    <div class="loading-state">
-      <div class="spinner"></div>
-      <p>Loading submission history...</p>
-    </div>
+  @if (submissions.length === 0) {
+    <p class="empty-state">No submissions found.</p>
   }
 
-  <!-- Submissions List -->
-  @if (submissions.length > 0) {
-    <div class="submissions-list">
-      @for (sub of submissions; track sub.id) {
-        <div class="submission-card">
-          <div class="submission-header">
-            <div class="exam-info">
-              <h3 class="exam-title">Exam ID: {{ sub.examId }}</h3>
-              <p class="submission-date">Submitted: {{ sub.submittedAt | date:'medium' }}</p>
-            </div>
-            <div class="submission-status">
-              <span class="status-badge status-graded">Graded</span>
-            </div>
-          </div>
+  @else {
+    <table class="submission-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Exam Title</th>
+          <th>Score</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
 
-          <div class="submission-body">
-            <div class="score-section">
-              <div class="score-display">
-                <div class="score-circle grade-{{ sub.grade }}">
-                  <span class="score-percentage">
-                    {{ sub.score * 100 / sub.totalPoints | number:'1.0-0' }}%
-                  </span>
-                  <span class="score-grade">{{ sub.grade }}</span>
-                </div>
-              </div>
-
-              <div class="score-details">
-                <div class="detail-row">
-                  <span class="detail-label">Score:</span>
-                  <span class="detail-value">{{ sub.score }}/{{ sub.totalPoints }}</span>
-                </div>
-                <div class="detail-row">
-                  <span class="detail-label">Grade:</span>
-                  <span class="detail-value">{{ sub.grade }}</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="progress-section">
-              <div class="progress-bar">
-                <div class="progress-fill grade-{{ sub.grade }}"
-                     [style.width.%]="(sub.score / sub.totalPoints) * 100"></div>
-              </div>
-              <div class="progress-stats">
-                <span>{{ sub.score }} correct answers</span>
-                <span>{{ sub.totalPoints - sub.score }} incorrect</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="submission-actions">
-            <button class="btn btn-primary">View Details</button>
-          </div>
-        </div>
-      }
-    </div>
-  } @else {
-    <!-- Empty State -->
-    <div class="empty-state">
-      <div class="empty-icon">📋</div>
-      <h3>No Submissions Found</h3>
-      <p>You haven't submitted any exams yet.</p>
-    </div>
+      <tbody>
+        @for (submission of submissions; track $index) {
+          <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ submission.examTitle }}</td>
+            <td>{{ submission.score }}%</td>
+            <td>{{ submission.submittedAt }}</td>
+            <td>
+              <a class="btn btn-outline-primary" routerLink="/student/results">View Result</a>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
   }
+  
 </div>

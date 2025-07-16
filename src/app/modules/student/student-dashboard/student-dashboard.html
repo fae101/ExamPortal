@@ -1,5 +1,154 @@
 <!-- Student Dashboard -->
 <div class="student-dashboard">
+
+  <!-- Header Section -->
+  <header class="dashboard-header">
+    <div class="header-content">
+      <h1 class="dashboard-title">Student Dashboard</h1>
+      <p class="dashboard-subtitle">Welcome back! Ready to take your exams?</p>
+    </div>
+   
+  </header>
+
+  <!-- Main Content -->
+  <main class="dashboard-main">
+
+    <!-- Quick Stats -->
+    <section class="stats-section">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">📊</div>
+          <div class="stat-content">
+            <h3 class="stat-number">12</h3>
+            <p class="stat-label">Available Exams</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">✅</div>
+          <div class="stat-content">
+            <h3 class="stat-number">8</h3>
+            <p class="stat-label">Completed</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⏱️</div>
+          <div class="stat-content">
+            <h3 class="stat-number">4</h3>
+            <p class="stat-label">Pending</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🏆</div>
+          <div class="stat-content">
+            <h3 class="stat-number">85%</h3>
+            <p class="stat-label">Avg. Score</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Cards -->
+    <section class="navigation-section">
+      <div class="nav-grid">
+
+        <!-- Exam List Card -->
+        <div class="nav-card primary-card">
+          <div class="nav-card-header">
+            <div class="nav-icon">📝</div>
+            <h2 class="nav-title">Take Exams</h2>
+          </div>
+          <p class="nav-description">
+            Browse and take available exams. View exam details, duration, and questions.
+          </p>
+          <div class="nav-actions">
+            <a class="nav-btn primary-btn" routerLink="exams">
+              View Exams
+              <span class="btn-arrow">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Results Card
+        <div class="nav-card secondary-card">
+          <div class="nav-card-header">
+            <div class="nav-icon">📈</div>
+            <h2 class="nav-title">View Results</h2>
+          </div>
+          <p class="nav-description">
+            Check your exam results, scores, and detailed performance breakdowns.
+          </p>
+          <div class="nav-actions">
+            <a class="nav-btn secondary-btn" routerLink="results">
+              View Results
+              <span class="btn-arrow">→</span>
+            </a>
+          </div>
+        </div> -->
+
+        <!-- Submission History Card -->
+        <div class="nav-card tertiary-card">
+          <div class="nav-card-header">
+            <div class="nav-icon">📋</div>
+            <h2 class="nav-title">Submission History</h2>
+          </div>
+          <p class="nav-description">
+            Review your past submissions and track your exam completion progress.
+          </p>
+          <div class="nav-actions">
+            <a class="nav-btn tertiary-btn" routerLink="submissions">
+              View History
+              <span class="btn-arrow">→</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Recent Activity -->
+    <section class="activity-section">
+      <div class="activity-header">
+        <h2 class="activity-title">Recent Activity</h2>
+        <button class="activity-more">View All</button>
+      </div>
+      <div class="activity-list">
+
+        <div class="activity-item">
+          <div class="activity-icon success">✅</div>
+          <div class="activity-content">
+            <h3 class="activity-text">Mathematics Final Exam completed</h3>
+            <p class="activity-time">2 hours ago</p>
+          </div>
+          <div class="activity-score success">95%</div>
+        </div>
+
+        <div class="activity-item">
+          <div class="activity-icon warning">⏰</div>
+          <div class="activity-content">
+            <h3 class="activity-text">Physics Quiz due tomorrow</h3>
+            <p class="activity-time">1 day left</p>
+          </div>
+          <div class="activity-badge warning">Due Soon</div>
+        </div>
+
+        <div class="activity-item">
+          <div class="activity-icon primary">📝</div>
+          <div class="activity-content">
+            <h3 class="activity-text">New Chemistry Lab exam available</h3>
+            <p class="activity-time">3 hours ago</p>
+          </div>
+          <div class="activity-badge primary">New</div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+</div>
+
+<!-- Student Dashboard
+<div class="student-dashboard">
   <header class="dashboard-header">
     <div class="header-content">
       <h1 class="dashboard-title">Student Dashboard</h1>
@@ -8,7 +157,7 @@
   </header>
 
   <main class="dashboard-main">
-    <!-- Quick Stats -->
+
     <section class="stats-section">
       <div class="stats-grid">
         <div class="stat-card">
@@ -42,7 +191,7 @@
       </div>
     </section>
 
-    <!-- Navigation Cards -->
+    
     <section class="navigation-section">
       <div class="nav-grid">
         <div class="nav-card primary-card">
@@ -95,7 +244,7 @@
       </div>
     </section>
 
-    <!-- Recent Activity -->
+
     <section class="activity-section">
       <div class="activity-header">
         <h2 class="activity-title">Recent Activity</h2>
@@ -115,4 +264,4 @@
     </section>
   </main>
 
-</div>
+</div> -->

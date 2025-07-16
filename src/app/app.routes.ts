@@ -8,7 +8,7 @@ import { Student } from './modules/student/student';
 import { ExamList } from './modules/student/components/exam-list/exam-list';
 import { ExamDetails } from './modules/student/components/exam-details/exam-details';
 import { SubmissionHistory } from './modules/student/components/submission-history/submission-history';
-import { ExamResults } from './modules/student/components/exam-results/exam-results';
+import { ExamResult } from './modules/student/components/exam-results/exam-results';
 import { StudentDashboard } from './modules/student/student-dashboard/student-dashboard';
 
 export const routes: Routes = [
@@ -25,7 +25,7 @@ export const routes: Routes = [
     { path: 'exams', component: ExamList },
     { path: 'exam/:id', component: ExamDetails },
     { path: 'submissions', component: SubmissionHistory },
-    { path: 'results', component: ExamResults }
+    { path: 'results', component: ExamResult }
   ]
   },
 

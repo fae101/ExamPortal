@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 // Component imports
-import { ExamResults } from '../student/components/exam-results/exam-results';
+import { ExamResult } from '../student/components/exam-results/exam-results';
 import { Route } from '@angular/router';
 import { StudentDashboard } from './student-dashboard/student-dashboard';
 import { ExamList } from './components/exam-list/exam-list';
@@ -17,7 +17,7 @@ export const studentRoutes: Route[] = [
     children: [
       { path: '', component: StudentDashboard }, // homepage with cards
       { path: 'exams', component: ExamList },
-      { path: 'results', component: ExamResults },
+      { path: 'results', component: ExamResult },
       { path: 'submissions', component: SubmissionHistory }
     ]
   }
