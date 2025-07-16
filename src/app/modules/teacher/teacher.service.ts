@@ -19,17 +19,17 @@ export class TeacherService {
 
   constructor(private http: HttpClient) {}
 
-  // 🔍 Fetch all enrolled students
+  // Fetch all enrolled students
   getStudents(): Observable<Student[]> {
     return this.http.get<Student[]>(`${this.baseUrl}/students`);
   }
 
-  // 🧠 Optionally: Fetch individual student profile
+  //  Optionally: Fetch individual student profile
   getStudentById(id: string): Observable<Student> {
     return this.http.get<Student>(`${this.baseUrl}/students/${id}`);
   }
 
-  // 🧪 Optionally: Fetch performance stats or exams taken
+  //  Optionally: Fetch performance stats or exams taken
   getStudentPerformance(id: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/students/${id}/performance`);
   }

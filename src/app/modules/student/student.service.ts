@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { } from '../student/components/exam-results/exam-results'; // Adjust the import path as necessary
 
-// -- DTO Interfaces (can be split later into models if preferred) --
 export interface ExamOverview {
   id: string;
   title: string;
@@ -33,6 +31,7 @@ export interface SubmissionDTO {
   userId: string;
   answers: AnswerPayload;
 }
+
 export interface Result {
   score: number;
   totalPoints: number;
@@ -53,28 +52,53 @@ export interface Result {
   providedIn: 'root'
 })
 export class StudentService {
-  private baseUrl = 'https://localhost:5240/api/student'; // Adjust to your API origin
+  private baseUrl = 'http://localhost:5240/api';
 
   constructor(private http: HttpClient) {}
 
+  private getAuthHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token') || '';
+    return new HttpHeaders({ Authorization: `Bearer ${token}` });
+  }
+
   /** Get all published exams */
   getPublishedExams(): Observable<ExamOverview[]> {
-    return this.http.get<ExamOverview[]>(`${this.baseUrl}/exams`);
+    return this.http.get<ExamOverview[]>(
+      `${this.baseUrl}/student/exams`,
+      { headers: this.getAuthHeaders() }
+    );
   }
 
-  /** Get details of a specific exam including questions */
+  /** Get details of a specific exam */
   getExamDetails(examId: string): Observable<ExamDetail> {
-    return this.http.get<ExamDetail>(`${this.baseUrl}/exam/${examId}`);
+    return this.http.get<ExamDetail>(
+      `${this.baseUrl}/student/exam/${examId}`,
+      { headers: this.getAuthHeaders() }
+    );
   }
 
-  /** Submit answers to a specific exam */
+  /** Submit answers to an exam */
   submitAnswers(examId: string, payload: SubmissionDTO): Observable<any> {
-    return this.http.post(`${this.baseUrl}/exam/${examId}/submit`, payload);
+    return this.http.post(
+      `${this.baseUrl}/student/exam/${examId}/submit`,
+      payload,
+      { headers: this.getAuthHeaders() }
+    );
   }
 
-    /** Get results for a specific exam */
+  /** Get results for a specific exam */
   getResult(examId: string): Observable<Result> {
-  return this.http.get<Result>(`/api/exams/${examId}/result`);
-}
+    return this.http.get<Result>(
+      `${this.baseUrl}/submission/result/${examId}`,
+      { headers: this.getAuthHeaders() }
+    );
+  }
 
+  /** Get all submissions by user */
+  getSubmissionHistory(userId: string): Observable<any[]> {
+    return this.http.get<any[]>(
+      `${this.baseUrl}/submission/user/${userId}`,
+      { headers: this.getAuthHeaders() }
+    );
+  }
 }

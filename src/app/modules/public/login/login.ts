@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -18,7 +19,8 @@ export class Login {
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    
   ) {
     this.form = this.fb.group({
       UserName: [
@@ -34,16 +36,35 @@ export class Login {
       this.loading = true;
       const payload = this.form.value;
 
-      this.auth.login(payload).subscribe({
-        next: (res: UserResponseDTO) => {
-          alert('Welcome back, ' + res.user_name);
-          this.router.navigate([res.role === 'admin' ? '/dashboard' : '/student']);
-        },
-        error: (err) => {
-          alert('Login failed: ' + err.message);
-          this.loading = false;
-        }
-      });
+     this.auth.login(payload).subscribe({
+      
+ next: (res: any) => {
+  const userId = res.id;
+  const role = res.role;
+
+  localStorage.setItem('userId', res.userId);
+  localStorage.setItem('token', res.token);
+  localStorage.setItem('user', JSON.stringify(res));
+  
+  alert('Welcome Back, ' + res.user_name + ' 🎉');
+
+  switch (role) {
+    case 'student':
+      this.router.navigate(['/student']);
+      break;
+    case 'teacher':
+    case 'admin':
+      this.router.navigate(['/dashboard']);
+      break;
+    default:
+      this.router.navigate(['/']);
+      break;}
+
+  },
+  error: (err) => {
+    alert('Login failed: ' + err.message);
+  }
+});
     } else {
       Object.values(this.form.controls).forEach(c => c.markAsTouched());
     }

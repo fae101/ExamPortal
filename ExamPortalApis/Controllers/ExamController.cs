@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ExamPortalApis.Controllers
 {
-  [Authorize(Roles = "Admin")]
+  [Authorize]
   [Route("api/[controller]")]
   [ApiController]
   public class ExamController : ControllerBase
